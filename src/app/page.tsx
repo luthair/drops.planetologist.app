@@ -26,15 +26,15 @@ export default function HomePage() {
           <div className="container mx-auto px-4 py-6">
             <div className="flex items-center gap-3">
               <div className="flex items-center gap-2">
-                <Twitch className="h-8 w-8 text-purple-400" />
-                <h1 className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-                  Drops Tracker
+                <Twitch className="h-8 w-8 text-orange-400" />
+                <h1 className="text-2xl font-bold bg-gradient-to-r from-orange-400 to-amber-400 bg-clip-text text-transparent">
+                  Dune: Awakening Drops
                 </h1>
               </div>
               <div className="hidden sm:flex items-center gap-2 ml-4">
                 <Gamepad2 className="h-4 w-4 text-gray-400" />
                 <span className="text-gray-400 text-sm">
-                  Your ultimate companion for Twitch drops and streamers
+                  Track streamers and drops on the desert planet Arrakis
                 </span>
               </div>
             </div>
@@ -48,14 +48,18 @@ export default function HomePage() {
             <section className="text-center py-8">
               <h2 className="text-4xl md:text-6xl font-bold text-white mb-4">
                 Never Miss A 
-                <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-orange-400 to-amber-400 bg-clip-text text-transparent">
                   {" "}Drop
                 </span>
               </h2>
-              <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-                Track your favorite streamers and discover the latest Twitch drops campaigns. 
-                Get notified when streamers go live and earn exclusive rewards.
+              <p className="text-xl text-gray-300 max-w-2xl mx-auto mb-4">
+                Track <span className="text-orange-400 font-semibold">Dune: Awakening</span> streamers and discover exclusive drops campaigns on Arrakis. 
+                The spice must flow, and so must the rewards!
               </p>
+              <div className="flex items-center justify-center gap-2 text-gray-400">
+                <div className="w-2 h-2 bg-orange-500 rounded-full animate-pulse"></div>
+                <span className="text-sm">Live tracking for Dune: Awakening content</span>
+              </div>
             </section>
 
             {/* Live Streamers Section */}

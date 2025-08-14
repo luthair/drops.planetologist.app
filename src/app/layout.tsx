@@ -4,8 +4,8 @@ import { type Metadata } from "next";
 import { Geist } from "next/font/google";
 
 export const metadata: Metadata = {
-  title: "Twitch Drops Tracker",
-  description: "Track your favorite streamers and discover active Twitch drops",
+  title: "Dune: Awakening Drops Tracker",
+  description: "Track Dune: Awakening streamers and discover exclusive Twitch drops on Arrakis. The spice must flow!",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 

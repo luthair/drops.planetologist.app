@@ -45,9 +45,12 @@ export function StreamerGrid({ streamers, isLoading }: StreamerGridProps) {
   return (
     <div className="w-full">
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-bold text-white">Live Streamers</h2>
+        <div>
+          <h2 className="text-2xl font-bold text-white">Dune: Awakening Streamers</h2>
+          <p className="text-sm text-gray-400 mt-1">Live streamers playing on Arrakis</p>
+        </div>
         <div className="flex items-center gap-2 text-gray-400">
-          <div className="h-2 w-2 rounded-full bg-green-500 animate-pulse" />
+          <div className="h-2 w-2 rounded-full bg-orange-500 animate-pulse" />
           <span className="text-sm">
             {onlineStreamers.length} online
           </span>
@@ -60,10 +63,10 @@ export function StreamerGrid({ streamers, isLoading }: StreamerGridProps) {
             <div className="w-6 h-6 bg-gray-500 rounded-full" />
           </div>
           <h3 className="text-lg font-semibold text-gray-400 mb-2">
-            No streamers online
+            No Dune: Awakening streamers online
           </h3>
           <p className="text-gray-500">
-            Check back later or add more streamers to your list
+            The desert is quiet... Check back later for active streams from Arrakis
           </p>
         </div>
       ) : (

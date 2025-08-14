@@ -1,6 +1,6 @@
-# Twitch Drops Tracker 🎮
+# Dune: Awakening Drops Tracker 🏜️
 
-A beautiful, modern web application for tracking your favorite Twitch streamers and discovering active Twitch drops campaigns. Never miss a drop again!
+A beautiful, modern web application specifically designed for tracking **Dune: Awakening** streamers and discovering exclusive Twitch drops campaigns on Arrakis. The spice must flow, and so must the rewards!
 
 ![Twitch Drops Tracker](https://img.shields.io/badge/Next.js-15.4-black?style=flat-square&logo=next.js)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.8-blue?style=flat-square&logo=typescript)
@@ -8,24 +8,26 @@ A beautiful, modern web application for tracking your favorite Twitch streamers 
 
 ## ✨ Features
 
-### 🎯 **Live Streamer Tracking**
-- **Real-time monitoring** of your favorite streamers' online status
-- **Dynamic grid layout** with beautiful cards showing stream thumbnails, viewer counts, and game categories
-- **Auto-refresh** every 30 seconds to keep information current
+### 🎯 **Dune: Awakening Streamer Tracking**
+- **Real-time monitoring** of streamers playing Dune: Awakening
+- **Game-specific filtering** - only shows streamers currently playing on Arrakis
+- **Dynamic grid layout** with beautiful cards showing stream thumbnails, viewer counts, and stream titles
+- **Auto-refresh** every 30 seconds to keep desert intelligence current
 - **Loading states** with elegant skeleton placeholders
 
-### 📋 **Drops Campaign Management**
-- **Interactive accordion interface** for browsing active, upcoming, and ended drop campaigns
-- **Detailed campaign information** including requirements, dates, and game titles
-- **Full-screen image viewer** for drop screenshots and rewards
+### 📋 **Dune: Awakening Drops Management**
+- **Interactive accordion interface** for browsing Dune-themed drop campaigns
+- **Lore-rich campaigns** featuring House Atreides, Fremen secrets, spice harvesting, and sandworm encounters
+- **Detailed campaign information** including requirements, dates, and exclusive rewards
+- **Full-screen image viewer** for drop screenshots and desert-themed rewards
 - **Smart sorting** by campaign status (active campaigns shown first)
 
 ### 🎨 **Beautiful Design**
-- **Modern gaming aesthetic** with purple/pink gradient themes
+- **Desert-themed aesthetic** with orange/amber gradients inspired by Arrakis
 - **Glassmorphism effects** with backdrop blur and transparency
 - **Smooth animations** and hover effects throughout the interface
 - **Fully responsive** design that works perfectly on all devices
-- **Dark theme** optimized for gaming environments
+- **Dark theme** optimized for the harsh desert environment
 
 ## 🚀 Getting Started
 

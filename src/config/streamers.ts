@@ -3,13 +3,14 @@
 export const WHITELISTED_STREAMERS = [
   // Popular streamers known for playing Dune: Awakening
   'khronosvii',
-  'mrgreggles',
+  'MrGregles',
   'viiki', 
   'anniefuchsia',
   'admiralbahroo',
   'piratesoftware',
   'winky',
-
+  'HelpingHans',
+  'JayTheBard',
   // Add more streamers here as needed
 ] as const;
 

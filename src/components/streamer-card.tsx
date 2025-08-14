@@ -1,14 +1,16 @@
 "use client";
 
 import type { Streamer } from "~/types";
-import { Users, Eye } from "lucide-react";
+import { Users, Eye, ExternalLink } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 interface StreamerCardProps {
   streamer: Streamer;
 }
 
 export function StreamerCard({ streamer }: StreamerCardProps) {
+  const twitchUrl = `https://twitch.tv/${streamer.username}`;
   const formatViewerCount = (count: number) => {
     if (count >= 1000) {
       return `${(count / 1000).toFixed(1)}K`;
@@ -17,7 +19,12 @@ export function StreamerCard({ streamer }: StreamerCardProps) {
   };
 
   return (
-    <div className="group relative overflow-hidden rounded-xl bg-planet-card border border-planet-accent/30 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-planet-accent hover:shadow-xl hover:shadow-planet-accent/20">
+    <Link 
+      href={twitchUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="block group relative overflow-hidden rounded-xl bg-planet-card border border-planet-accent/30 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-planet-accent hover:shadow-xl hover:shadow-planet-accent/20"
+    >
       <div className="relative aspect-video overflow-hidden">
         <Image
           src={streamer.thumbnailUrl ?? "/api/placeholder/320/180"}
@@ -78,7 +85,12 @@ export function StreamerCard({ streamer }: StreamerCardProps) {
             <span className="truncate">{streamer.gameCategory}</span>
           </div>
         )}
+        
+        {/* External link indicator */}
+        <div className="absolute bottom-3 right-3 text-planet-accent/80 opacity-0 transition-opacity group-hover:opacity-100">
+          <ExternalLink className="h-4 w-4" />
+        </div>
       </div>
-    </div>
+    </Link>
   );
 }

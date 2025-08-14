@@ -35,9 +35,9 @@ export function Modal({ isOpen, onClose, children, title }: ModalProps) {
     <Dialog.Root open={isOpen} onOpenChange={onClose}>
       <Dialog.Portal>
         <Dialog.Overlay className="fixed inset-0 bg-black/50 backdrop-blur-sm animate-in fade-in duration-200" />
-        <Dialog.Content className="fixed left-1/2 top-1/2 z-50 w-[95vw] max-w-4xl -translate-x-1/2 -translate-y-1/2 animate-in fade-in zoom-in-95 duration-200">
-          <div className="relative bg-gray-900 rounded-xl border border-gray-700 shadow-2xl">
-            <Dialog.Close className="absolute right-4 top-4 z-10 rounded-md bg-gray-800/80 p-2 text-gray-400 transition-colors hover:bg-gray-800 hover:text-gray-200">
+        <Dialog.Content className="fixed left-1/2 top-1/2 z-50 w-[80vw] h-[80vh] max-w-none -translate-x-1/2 -translate-y-1/2 animate-in fade-in zoom-in-95 duration-200">
+          <div className="relative bg-planet-card rounded-xl border border-planet-accent/30 shadow-2xl h-full flex flex-col">
+            <Dialog.Close className="absolute right-4 top-4 z-10 rounded-md bg-planet-background/80 p-2 text-planet-accent/70 transition-colors hover:bg-planet-background hover:text-planet-accent">
               <X className="h-5 w-5" />
               <span className="sr-only">Close</span>
             </Dialog.Close>
@@ -53,7 +53,7 @@ export function Modal({ isOpen, onClose, children, title }: ModalProps) {
               </VisuallyHidden.Root>
             )}
             
-            <div className="p-6">
+            <div className="p-4 flex-1 overflow-hidden">
               {children}
             </div>
           </div>

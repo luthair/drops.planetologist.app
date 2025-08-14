@@ -1,11 +1,38 @@
 @import "tailwindcss";
 
-@theme {
-  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  
-  --animate-accordion-down: accordion-down 0.2s ease-out;
-  --animate-accordion-up: accordion-up 0.2s ease-out;
+/* Base styles */
+* {
+  border-color: #443B2C;
+}
+
+body {
+  background-color: #29292C;
+  color: #C1995B;
+}
+
+@layer base {
+  :root {
+    --background: #29292C;
+    --foreground: #C1995B;
+    --card: #1A1A1C;
+    --card-foreground: #C1995B;
+    --popover: #1A1A1C;
+    --popover-foreground: #C1995B;
+    --primary: #C1995B;
+    --primary-foreground: #29292C;
+    --secondary: #1D1D1F;
+    --secondary-foreground: #C1995B;
+    --muted: rgba(193,153,91,0.1);
+    --muted-foreground: #443B2C;
+    --accent: #C1995B;
+    --accent-foreground: #29292C;
+    --destructive: #FF6A6A;
+    --destructive-foreground: #29292C;
+    --border: #443B2C;
+    --input: #443B2C;
+    --ring: #FAA9FF;
+    --radius: 0.5rem;
+  }
 }
 
 @keyframes accordion-down {
@@ -24,4 +51,40 @@
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+/* Ensure planet colors are available */
+@layer utilities {
+  .bg-planet-background { background-color: #29292C; }
+  .bg-planet-secondary { background-color: #1D1D1F; }
+  .bg-planet-card { background-color: #1A1A1C; }
+  .bg-planet-accent { background-color: #C1995B; }
+  .bg-planet-accent-hover { background-color: #E2B56B; }
+  .bg-planet-highlight { background-color: #FAA9FF; }
+  .bg-planet-border { background-color: #443B2C; }
+  .bg-planet-accent-faded { background-color: rgba(193,153,91,0.1); }
+  
+  .text-planet-accent { color: #C1995B; }
+  .text-planet-accent-hover { color: #E2B56B; }
+  .text-planet-highlight { color: #FAA9FF; }
+  
+  .border-planet-accent { border-color: #C1995B; }
+  .border-planet-border { border-color: #443B2C; }
+  
+  /* Opacity variants */
+  .text-planet-accent\/70 { color: rgba(193,153,91,0.7); }
+  .text-planet-accent\/50 { color: rgba(193,153,91,0.5); }
+  .text-planet-accent\/30 { color: rgba(193,153,91,0.3); }
+  .border-planet-accent\/30 { border-color: rgba(193,153,91,0.3); }
+  .bg-planet-highlight\/80 { background-color: rgba(250,169,255,0.8); }
+  .bg-planet-highlight\/90 { background-color: rgba(250,169,255,0.9); }
+  .bg-planet-highlight\/20 { background-color: rgba(250,169,255,0.2); }
+  .bg-planet-background\/80 { background-color: rgba(41,41,44,0.8); }
+  .bg-planet-secondary\/90 { background-color: rgba(29,29,31,0.9); }
+  
+  /* Gradient utilities */
+  .from-planet-accent { --tw-gradient-from: #C1995B; --tw-gradient-to: rgba(193, 153, 91, 0); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+  .to-planet-accent-hover { --tw-gradient-to: #E2B56B; }
+  .from-planet-highlight { --tw-gradient-from: #FAA9FF; --tw-gradient-to: rgba(250, 169, 255, 0); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+  .to-planet-highlight { --tw-gradient-to: #FAA9FF; }
 }

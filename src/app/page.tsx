@@ -2,39 +2,41 @@
 
 import { StreamerGrid } from "~/components/streamer-grid";
 import { DropsAccordion } from "~/components/drops-accordion";
-import { sampleDropsPeriods } from "~/data/sample-data";
+import { getDropsCampaigns, getSiteContent } from "~/lib/content";
 import { useStreamers } from "~/hooks/use-streamers";
 import { Twitch, Gamepad2 } from "lucide-react";
 
 export default function HomePage() {
-  const { streamers, isLoading } = useStreamers();
+  const { streamers, isLoading, error } = useStreamers();
+  const dropsCampaigns = getDropsCampaigns();
+  const content = getSiteContent();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+    <div className="min-h-screen bg-planet-background">
       {/* Background pattern */}
       <div 
-        className="absolute inset-0 opacity-20"
+        className="absolute inset-0 opacity-10"
         style={{
           backgroundImage: 'radial-gradient(circle at 30px 30px, rgba(255,255,255,0.1) 1px, transparent 1px)',
-          backgroundSize: '60px 60px'
+          backgroundSize: '64px 64px'
         }}
       />
       
       <div className="relative">
         {/* Header */}
-        <header className="border-b border-gray-800 bg-black/20 backdrop-blur-sm">
+        <header className="border-b border-planet-border bg-planet-secondary/90 backdrop-blur-sm">
           <div className="container mx-auto px-4 py-6">
             <div className="flex items-center gap-3">
               <div className="flex items-center gap-2">
-                <Twitch className="h-8 w-8 text-orange-400" />
-                <h1 className="text-2xl font-bold bg-gradient-to-r from-orange-400 to-amber-400 bg-clip-text text-transparent">
-                  Dune: Awakening Drops
+                <Twitch className="h-8 w-8 text-planet-accent" />
+                <h1 className="text-2xl font-bold text-planet-accent">
+                  {content.header.title}
                 </h1>
               </div>
               <div className="hidden sm:flex items-center gap-2 ml-4">
-                <Gamepad2 className="h-4 w-4 text-gray-400" />
-                <span className="text-gray-400 text-sm">
-                  Track streamers and drops on the desert planet Arrakis
+                <Gamepad2 className="h-4 w-4 text-planet-accent/70" />
+                <span className="text-planet-accent/70 text-sm">
+                  {content.header.subtitle}
                 </span>
               </div>
             </div>
@@ -45,47 +47,31 @@ export default function HomePage() {
         <main className="container mx-auto px-4 py-8">
           <div className="space-y-12">
             {/* Hero Section */}
-            <section className="text-center py-8">
-              <h2 className="text-4xl md:text-6xl font-bold text-white mb-4">
-                Never Miss A 
-                <span className="bg-gradient-to-r from-orange-400 to-amber-400 bg-clip-text text-transparent">
-                  {" "}Drop
-                </span>
-              </h2>
-              <p className="text-xl text-gray-300 max-w-2xl mx-auto mb-4">
-                Track <span className="text-orange-400 font-semibold">Dune: Awakening</span> streamers and discover exclusive drops campaigns on Arrakis. 
-                The spice must flow, and so must the rewards!
-              </p>
-              <div className="flex items-center justify-center gap-2 text-gray-400">
-                <div className="w-2 h-2 bg-orange-500 rounded-full animate-pulse"></div>
-                <span className="text-sm">Live tracking for Dune: Awakening content</span>
-              </div>
-            </section>
-
-            {/* Live Streamers Section */}
-            <section>
-              <StreamerGrid streamers={streamers} isLoading={isLoading} />
-            </section>
+            
+                          {/* Live Streamers Section */}
+              <section>
+                <StreamerGrid streamers={streamers} isLoading={isLoading} error={error} />
+              </section>
 
             {/* Drops Section */}
             <section>
-              <DropsAccordion periods={sampleDropsPeriods} />
+              <DropsAccordion periods={dropsCampaigns} />
             </section>
           </div>
         </main>
 
         {/* Footer */}
-        <footer className="border-t border-gray-800 bg-black/20 backdrop-blur-sm mt-16">
+        <footer className="border-t border-planet-border bg-planet-secondary mt-16">
           <div className="container mx-auto px-4 py-6">
             <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-              <div className="flex items-center gap-2 text-gray-400">
-                <Twitch className="h-5 w-5" />
+              <div className="flex items-center gap-2 text-planet-accent/70">
+                <Twitch className="h-5 w-5 text-planet-accent" />
                 <span className="text-sm">
-                  Drops Tracker - Built with Next.js and Tailwind CSS
+                  {content.footer.text}
                 </span>
               </div>
-              <div className="text-gray-500 text-sm">
-                Not affiliated with Twitch Interactive, Inc.
+              <div className="text-planet-accent/50 text-sm">
+                {content.footer.disclaimer}
               </div>
             </div>
           </div>

@@ -66,6 +66,42 @@ A beautiful, modern web application specifically designed for tracking **Dune: A
 5. **Open your browser**
    Navigate to [http://localhost:3000](http://localhost:3000)
 
+## 🐳 Docker Deployment
+
+### Quick Start with Docker
+
+1. **Create environment file**
+   ```bash
+   # Create .env file with your Twitch credentials
+   TWITCH_CLIENT_ID=your_actual_client_id
+   TWITCH_CLIENT_SECRET=your_actual_client_secret
+   ```
+
+2. **Build and run with Docker Compose**
+   ```bash
+   docker-compose up --build -d
+   ```
+
+3. **Access the application**
+   Navigate to [http://localhost:3010](http://localhost:3010)
+
+### Docker Commands
+```bash
+# Start services
+docker-compose up -d
+
+# Stop services  
+docker-compose down
+
+# View logs
+docker-compose logs -f
+
+# Rebuild after changes
+docker-compose up --build -d
+```
+
+For detailed Docker setup instructions, see [DOCKER_SETUP.md](DOCKER_SETUP.md).
+
 ## 🔧 Configuration
 
 ### Twitch API Setup

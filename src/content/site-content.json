@@ -1,0 +1,27 @@
+{
+  "header": {
+    "title": "Dune: Awakening Drops",
+    "subtitle": "A selection of streamers playing Dune: Awakening",
+    "liveIndicator": "Live tracking for Dune: Awakening content"
+  },
+  "streamers": {
+    "sectionTitle": "Dune: Awakening Streamers",
+    "sectionSubtitle": "Live streamers playing on Arrakis",
+    "emptyState": {
+      "title": "No Dune: Awakening streamers online",
+      "description": "The desert is quiet... Check back later for active streams from Arrakis"
+    }
+  },
+  "drops": {
+    "sectionTitle": "Twitch Drops",
+    "sectionSubtitle": "Discover active and upcoming drop campaigns. Click on any period to see details."
+  },
+  "footer": {
+    "text": "Drops Tracker - Built with Next.js and Tailwind CSS",
+    "disclaimer": "Not affiliated with Twitch Interactive, Inc."
+  },
+  "meta": {
+    "title": "Dune: Awakening Drops Tracker",
+    "description": "Track Dune: Awakening streamers and discover exclusive Twitch drops on Arrakis. The spice must flow!"
+  }
+}

@@ -5,6 +5,12 @@
 import "./src/env.js";
 
 /** @type {import("next").NextConfig} */
-const config = {};
+const config = {
+  images: {
+    domains: ['images.unsplash.com', 'static-cdn.jtvnw.net'],
+  },
+  // Enable standalone output for Docker
+  output: 'standalone',
+};
 
 export default config;

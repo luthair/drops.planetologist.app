@@ -19,7 +19,8 @@ export function useStreamers(refreshInterval = 30000): UseStreamersReturn {
     try {
       const response = await fetch("/api/streamers");
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        const errorData = await response.json() as { error?: string };
+        throw new Error(errorData.error ?? `HTTP error! status: ${response.status}`);
       }
       const data = await response.json() as { streamers: Streamer[] };
       setStreamers(data.streamers);

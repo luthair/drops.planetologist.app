@@ -17,7 +17,7 @@ export function StreamerCard({ streamer }: StreamerCardProps) {
   };
 
   return (
-    <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-purple-900/20 to-pink-900/20 border border-purple-500/20 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-purple-400/40 hover:shadow-xl hover:shadow-purple-500/10">
+    <div className="group relative overflow-hidden rounded-xl bg-planet-card border border-planet-accent/30 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-planet-accent hover:shadow-xl hover:shadow-planet-accent/20">
       <div className="relative aspect-video overflow-hidden">
         <Image
           src={streamer.thumbnailUrl ?? "/api/placeholder/320/180"}
@@ -29,8 +29,8 @@ export function StreamerCard({ streamer }: StreamerCardProps) {
         
         {/* Live indicator */}
         <div className="absolute left-3 top-3">
-          <div className="flex items-center gap-1.5 rounded-full bg-red-600 px-2 py-1 text-xs font-semibold text-white">
-            <div className="h-2 w-2 rounded-full bg-white animate-pulse" />
+          <div className="flex items-center gap-1.5 rounded-full bg-planet-highlight/90 px-2 py-1 text-xs font-semibold text-black">
+            <div className="h-2 w-2 rounded-full bg-black animate-pulse" />
             LIVE
           </div>
         </div>
@@ -38,7 +38,7 @@ export function StreamerCard({ streamer }: StreamerCardProps) {
         {/* Viewer count */}
         {streamer.viewerCount && (
           <div className="absolute right-3 top-3">
-            <div className="flex items-center gap-1 rounded-full bg-black/60 px-2 py-1 text-xs font-medium text-white backdrop-blur-sm">
+            <div className="flex items-center gap-1 rounded-full bg-planet-background/80 px-2 py-1 text-xs font-medium text-planet-accent backdrop-blur-sm">
               <Users className="h-3 w-3" />
               {formatViewerCount(streamer.viewerCount)}
             </div>
@@ -48,7 +48,7 @@ export function StreamerCard({ streamer }: StreamerCardProps) {
 
       <div className="p-4">
         <div className="flex items-center gap-3 mb-3">
-          <div className="relative h-10 w-10 overflow-hidden rounded-full border-2 border-purple-400/30">
+          <div className="relative h-10 w-10 overflow-hidden rounded-full border-2 border-planet-accent/30">
             <Image
               src={streamer.avatarUrl ?? "/api/placeholder/40/40"}
               alt={`${streamer.displayName} avatar`}
@@ -57,23 +57,23 @@ export function StreamerCard({ streamer }: StreamerCardProps) {
             />
           </div>
           <div className="flex-1 min-w-0">
-            <h3 className="font-semibold text-white truncate">
+            <h3 className="font-semibold text-planet-accent truncate">
               {streamer.displayName}
             </h3>
-            <p className="text-sm text-gray-400 truncate">
+            <p className="text-sm text-planet-accent/70 truncate">
               @{streamer.username}
             </p>
           </div>
         </div>
 
         {streamer.streamTitle && (
-          <p className="text-sm text-gray-300 mb-2 line-clamp-2">
+          <p className="text-sm text-planet-accent mb-2 line-clamp-2">
             {streamer.streamTitle}
           </p>
         )}
 
         {streamer.gameCategory && (
-          <div className="flex items-center gap-1 text-xs text-purple-300">
+          <div className="flex items-center gap-1 text-xs text-planet-accent">
             <Eye className="h-3 w-3" />
             <span className="truncate">{streamer.gameCategory}</span>
           </div>

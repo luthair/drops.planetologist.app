@@ -2,10 +2,13 @@ import "~/styles/globals.css";
 
 import { type Metadata } from "next";
 import { Geist } from "next/font/google";
+import { getSiteContent } from "~/lib/content";
+
+const content = getSiteContent();
 
 export const metadata: Metadata = {
-  title: "Dune: Awakening Drops Tracker",
-  description: "Track Dune: Awakening streamers and discover exclusive Twitch drops on Arrakis. The spice must flow!",
+  title: content.meta.title,
+  description: content.meta.description,
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
@@ -19,7 +22,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${geist.variable}`}>
-      <body>{children}</body>
+      <body className="bg-planet-background min-h-screen">{children}</body>
     </html>
   );
 }

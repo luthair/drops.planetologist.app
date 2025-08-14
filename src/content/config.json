@@ -1,0 +1,19 @@
+{
+  "site": {
+    "name": "Dune: Awakening Drops Tracker",
+    "gameTitle": "Dune: Awakening",
+    "refreshInterval": 30000,
+    "showOfflineStreamers": false
+  },
+  "features": {
+    "autoRefresh": true,
+    "showViewerCounts": true,
+    "showStreamThumbnails": true,
+    "showDropsHistory": true
+  },
+  "display": {
+    "maxStreamersPerRow": 4,
+    "showLoadingSkeletons": true,
+    "animateCards": true
+  }
+}

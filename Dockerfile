@@ -22,6 +22,12 @@ COPY . .
 # Uncomment the following line in case you want to disable telemetry during the build.
 # ENV NEXT_TELEMETRY_DISABLED 1
 
+# Set build-time environment variables
+ARG TWITCH_CLIENT_ID
+ARG TWITCH_CLIENT_SECRET
+ENV TWITCH_CLIENT_ID=$TWITCH_CLIENT_ID
+ENV TWITCH_CLIENT_SECRET=$TWITCH_CLIENT_SECRET
+
 RUN npm run build
 
 # Production image, copy all the files and run next

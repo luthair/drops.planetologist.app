@@ -18,6 +18,8 @@ TWITCH_CLIENT_ID=your_actual_client_id_here
 TWITCH_CLIENT_SECRET=your_actual_client_secret_here
 ```
 
+⚠️ **Important**: These environment variables are required at **build time** because the Next.js app validates them during the build process.
+
 ### 2. Build and Run
 
 ```bash
@@ -121,8 +123,28 @@ netstat -an | grep 3010
 # Verify .env file exists and has correct format
 cat .env
 
+# Check if variables are loaded
+docker-compose config
+
 # Restart with fresh environment
 docker-compose down
+docker-compose up --build
+```
+
+### Build Fails with "Invalid environment variables"
+This happens when the `.env` file is missing or incorrectly formatted:
+
+```bash
+# 1. Ensure .env file exists in project root
+ls -la .env
+
+# 2. Check .env file format (no quotes around values)
+cat .env
+# Should look like:
+# TWITCH_CLIENT_ID=abc123
+# TWITCH_CLIENT_SECRET=def456
+
+# 3. Rebuild with environment variables
 docker-compose up --build
 ```
 

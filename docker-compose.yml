@@ -5,6 +5,9 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        - TWITCH_CLIENT_ID=${TWITCH_CLIENT_ID}
+        - TWITCH_CLIENT_SECRET=${TWITCH_CLIENT_SECRET}
     container_name: dune-drops-tracker
     ports:
       - "3010:3010"

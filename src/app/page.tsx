@@ -70,7 +70,7 @@ export default function HomePage() {
               <StreamerGrid 
                 streamers={nonDuneStreamers} 
                 isLoading={isLoading}
-                title="Our Streamers NOT Playing Dune"
+                title="Our Streamers NOT playing Dune"
                 subtitle="Check what else they're playing"
                 emptyMessage="All our streamers are currently playing Dune: Awakening"
               />

@@ -7,16 +7,26 @@ interface StreamerGridProps {
   streamers: Streamer[];
   isLoading?: boolean;
   error?: string | null;
+  title?: string;
+  subtitle?: string;
+  emptyMessage?: string;
 }
 
-export function StreamerGrid({ streamers, isLoading, error }: StreamerGridProps) {
+export function StreamerGrid({ 
+  streamers, 
+  isLoading, 
+  error, 
+  title = "Live Streamers",
+  subtitle = "Currently online streamers",
+  emptyMessage = "No streamers online"
+}: StreamerGridProps) {
   const onlineStreamers = streamers.filter(streamer => streamer.isOnline);
 
   if (error) {
     return (
       <div className="w-full">
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-2xl font-bold text-planet-accent">Dune: Awakening Streamers</h2>
+          <h2 className="text-2xl font-bold text-planet-accent">{title}</h2>
         </div>
         <div className="text-center py-12">
           <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-destructive/20 flex items-center justify-center">
@@ -37,7 +47,7 @@ export function StreamerGrid({ streamers, isLoading, error }: StreamerGridProps)
     return (
       <div className="w-full">
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-2xl font-bold text-planet-accent">Live Streamers</h2>
+          <h2 className="text-2xl font-bold text-planet-accent">{title}</h2>
           <div className="flex items-center gap-2 text-planet-accent/70">
             <div className="h-2 w-2 rounded-full bg-planet-highlight animate-pulse" />
             <span className="text-sm">Loading...</span>
@@ -68,8 +78,8 @@ export function StreamerGrid({ streamers, isLoading, error }: StreamerGridProps)
     <div className="w-full">
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h2 className="text-2xl font-bold text-planet-accent">Dune: Awakening Streamers</h2>
-          <p className="text-sm text-planet-accent/70 mt-1">Live streamers playing on Arrakis</p>
+          <h2 className="text-2xl font-bold text-planet-accent">{title}</h2>
+          <p className="text-sm text-planet-accent/70 mt-1">{subtitle}</p>
         </div>
         <div className="flex items-center gap-2 text-planet-accent/70">
           <div className="h-2 w-2 rounded-full bg-planet-highlight animate-pulse" />
@@ -85,10 +95,10 @@ export function StreamerGrid({ streamers, isLoading, error }: StreamerGridProps)
             <div className="w-6 h-6 bg-planet-accent/30 rounded-full" />
           </div>
           <h3 className="text-lg font-semibold text-planet-accent/70 mb-2">
-            No Dune: Awakening streamers online
+            {emptyMessage}
           </h3>
           <p className="text-planet-accent/50">
-            The desert is quiet... Check back later for active streams from Arrakis
+            Check back later for active streams
           </p>
         </div>
       ) : (

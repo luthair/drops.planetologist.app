@@ -4,14 +4,16 @@ import { useState, useEffect, useCallback } from "react";
 import type { Streamer } from "~/types";
 
 interface UseStreamersReturn {
-  streamers: Streamer[];
+  duneStreamers: Streamer[];
+  nonDuneStreamers: Streamer[];
   isLoading: boolean;
   error: string | null;
   refetch: () => Promise<void>;
 }
 
 export function useStreamers(refreshInterval = 30000): UseStreamersReturn {
-  const [streamers, setStreamers] = useState<Streamer[]>([]);
+  const [duneStreamers, setDuneStreamers] = useState<Streamer[]>([]);
+  const [nonDuneStreamers, setNonDuneStreamers] = useState<Streamer[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -22,8 +24,9 @@ export function useStreamers(refreshInterval = 30000): UseStreamersReturn {
         const errorData = await response.json() as { error?: string };
         throw new Error(errorData.error ?? `HTTP error! status: ${response.status}`);
       }
-      const data = await response.json() as { streamers: Streamer[] };
-      setStreamers(data.streamers);
+      const data = await response.json() as { duneStreamers: Streamer[], nonDuneStreamers: Streamer[] };
+      setDuneStreamers(data.duneStreamers);
+      setNonDuneStreamers(data.nonDuneStreamers);
       setError(null);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to fetch streamers");
@@ -51,7 +54,8 @@ export function useStreamers(refreshInterval = 30000): UseStreamersReturn {
   }, [fetchStreamers, refreshInterval]);
 
   return {
-    streamers,
+    duneStreamers,
+    nonDuneStreamers,
     isLoading,
     error,
     refetch,

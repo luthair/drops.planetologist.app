@@ -7,7 +7,7 @@ import { useStreamers } from "~/hooks/use-streamers";
 import { Twitch, Gamepad2 } from "lucide-react";
 
 export default function HomePage() {
-  const { streamers, isLoading, error } = useStreamers();
+  const { duneStreamers, nonDuneStreamers, isLoading, error } = useStreamers();
   const dropsCampaigns = getDropsCampaigns();
   const content = getSiteContent();
 
@@ -48,14 +48,32 @@ export default function HomePage() {
           <div className="space-y-12">
             {/* Hero Section */}
             
-                          {/* Live Streamers Section */}
-              <section>
-                <StreamerGrid streamers={streamers} isLoading={isLoading} error={error} />
-              </section>
+            {/* Dune Streamers Section */}
+            <section>
+              <StreamerGrid 
+                streamers={duneStreamers} 
+                isLoading={isLoading} 
+                error={error}
+                title="Dune: Awakening Streamers"
+                subtitle="Live streamers playing on Arrakis"
+                emptyMessage="No streamers currently playing Dune: Awakening"
+              />
+            </section>
 
             {/* Drops Section */}
             <section>
               <DropsAccordion periods={dropsCampaigns} />
+            </section>
+            
+            {/* Non-Dune Streamers Section */}
+            <section className="pt-6 mt-12 border-t border-planet-accent/30">
+              <StreamerGrid 
+                streamers={nonDuneStreamers} 
+                isLoading={isLoading}
+                title="Our Streamers NOT Playing Dune"
+                subtitle="Check what else they're playing"
+                emptyMessage="All our streamers are currently playing Dune: Awakening"
+              />
             </section>
           </div>
         </main>

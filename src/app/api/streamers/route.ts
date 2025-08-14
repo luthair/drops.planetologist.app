@@ -40,12 +40,26 @@ export async function GET() {
       };
     });
 
-    // Filter to only return streamers that are online
-    // Note: We can also filter by game if needed
-    const onlineStreamers = streamers.filter(streamer => streamer.isOnline);
+    // Define Dune game name
+    const DUNE_GAME_NAME = "Dune: Awakening";
     
-    console.log(`Returning ${onlineStreamers.length} online streamers`);
-    return NextResponse.json({ streamers: onlineStreamers });
+    // Filter for streamers that are online
+    const allOnlineStreamers = streamers.filter(streamer => streamer.isOnline);
+    
+    // Split into Dune streamers and non-Dune streamers
+    const duneStreamers = allOnlineStreamers.filter(streamer => 
+      streamer.gameCategory?.toLowerCase() === DUNE_GAME_NAME.toLowerCase()
+    );
+    
+    const nonDuneStreamers = allOnlineStreamers.filter(streamer => 
+      streamer.gameCategory?.toLowerCase() !== DUNE_GAME_NAME.toLowerCase()
+    );
+    
+    console.log(`Returning ${duneStreamers.length} Dune streamers and ${nonDuneStreamers.length} non-Dune streamers`);
+    return NextResponse.json({ 
+      duneStreamers,
+      nonDuneStreamers
+    });
 
   } catch (error) {
     console.error('Error fetching streamers:', error);

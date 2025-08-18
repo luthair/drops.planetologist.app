@@ -93,8 +93,7 @@ function DropsCarouselContent() {
         }
         
         .cycling-image {
-          animation: fadeInOut ${interval}ms infinite;
-          animation-delay: calc(var(--image-index) * ${interval}ms);
+          transition: opacity 500ms ease-in-out;
         }
         
         .drops-subtitle {
@@ -111,12 +110,9 @@ function DropsCarouselContent() {
             key={index}
             src={image}
             alt={`Dune Awakening Drop ${index + 1}`}
-            className={`cycling-image absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
+            className={`cycling-image absolute inset-0 w-full h-full object-cover ${
               index === currentImageIndex ? 'opacity-100' : 'opacity-0'
             }`}
-            style={{
-              '--image-index': index
-            } as React.CSSProperties}
           />
         ))}
         

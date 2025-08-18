@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 
-export default function DropsCarousel() {
+function DropsCarouselContent() {
   const searchParams = useSearchParams();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   
@@ -138,5 +138,15 @@ export default function DropsCarousel() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function DropsCarousel() {
+  return (
+    <Suspense fallback={<div className="w-[300px] h-[450px] bg-gray-900 rounded-lg flex items-center justify-center">
+      <div className="text-white">Loading...</div>
+    </div>}>
+      <DropsCarouselContent />
+    </Suspense>
   );
 }

@@ -62,33 +62,10 @@ function DropsCarouselPreview({ borderColor, textColor, speed, font }: {
           100% { opacity: 0; transform: scale(0.95); }
         }
         
-        @keyframes shimmer {
-          0% { background-position: -200% 0; }
-          100% { background-position: 200% 0; }
-        }
-        
         .image-container {
           border: 3px solid ${hexToBorderColor(borderColor)};
           position: relative;
           overflow: hidden;
-        }
-        
-        .image-container::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          background: linear-gradient(
-            90deg,
-            transparent,
-            rgba(255, 255, 255, 0.1),
-            transparent
-          );
-          background-size: 200% 100%;
-          animation: shimmer 3s infinite;
-          z-index: 1;
         }
         
         .cycling-image {

@@ -21,11 +21,48 @@ function DropsCarouselPreview({ borderColor, textColor, speed, font }: {
   
   const interval = speedMap[speed as keyof typeof speedMap] ?? speedMap.normal;
   
-  // Campaign 3 images
+  // Campaign 4 images with metadata
   const images = [
-    '/images/campaigns/streamer/drops-3/observer-drops-streamer-3-1.jpg',
-    '/images/campaigns/streamer/drops-3/observer-drops-streamer-3-2.jpg',
-    '/images/campaigns/streamer/drops-3/observer-drops-streamer-3-3.jpg'
+    {
+      path: '/images/campaigns/streamer/drops-4/01_Inverted_Corners_1h_card.png',
+      name: 'Inverted Corners',
+      watchTime: '1h'
+    },
+    {
+      path: '/images/campaigns/streamer/drops-4/02_Corners_1h_card.png',
+      name: 'Corners',
+      watchTime: '1h'
+    },
+    {
+      path: '/images/campaigns/streamer/drops-4/03_Round_Window_2h_card.png',
+      name: 'Round Window',
+      watchTime: '2h'
+    },
+    {
+      path: '/images/campaigns/streamer/drops-4/04_Ladders_2h_card.png',
+      name: 'Ladders',
+      watchTime: '2h'
+    },
+    {
+      path: '/images/campaigns/streamer/drops-4/05_Column2_2h_card.png',
+      name: 'Column2',
+      watchTime: '2h'
+    },
+    {
+      path: '/images/campaigns/streamer/drops-4/06_Pillar_3h_card.png',
+      name: 'Pillar',
+      watchTime: '3h'
+    },
+    {
+      path: '/images/campaigns/streamer/drops-4/07_Pillar_Bottom_3h_card.png',
+      name: 'Pillar Bottom',
+      watchTime: '3h'
+    },
+    {
+      path: '/images/campaigns/streamer/drops-4/08_Pillar_Top_3h_card.png',
+      name: 'Pillar Top',
+      watchTime: '3h'
+    }
   ];
 
   useEffect(() => {
@@ -77,6 +114,18 @@ function DropsCarouselPreview({ borderColor, textColor, speed, font }: {
           text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
           font-family: ${getFontFamily(font)};
         }
+        
+        .item-name {
+          font-size: 1.5rem;
+          font-weight: bold;
+          margin-top: 0rem;
+        }
+        
+        .watch-time {
+          font-size: 1.1rem;
+          font-weight: bold;
+          margin-bottom: 0.5rem;
+        }
       `}</style>
       
       <div className="image-container w-full h-full rounded-lg relative">
@@ -84,8 +133,8 @@ function DropsCarouselPreview({ borderColor, textColor, speed, font }: {
         {images.map((image, index) => (
           <img
             key={index}
-            src={image}
-            alt={`Dune Awakening Drop ${index + 1}`}
+            src={image.path}
+            alt={`DUNE AWAKENING ${image.name}`}
             className={`cycling-image absolute inset-0 w-full h-full object-cover ${
               index === currentImageIndex ? 'opacity-100' : 'opacity-0'
             }`}
@@ -94,17 +143,17 @@ function DropsCarouselPreview({ borderColor, textColor, speed, font }: {
         
         {/* Overlay Content */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30 flex flex-col justify-between p-4 z-10">
-          {/* Top Section */}
+          {/* Top Section - Item Name */}
           <div className="text-center">
-            <p className="drops-subtitle text-lg font-bold mb-1">
-              Observer Drops 3
+            <p className="drops-subtitle item-name">
+              {images[currentImageIndex]?.name ?? ""}
             </p>
           </div>
           
-          {/* Bottom Section */}
+          {/* Bottom Section - Watch Time */}
           <div className="text-center">
-            <div className="drops-subtitle text-s font-bold mb-6">
-              Watch & Earn Rewards
+            <div className="drops-subtitle watch-time">
+              Watch for {images[currentImageIndex]?.watchTime ?? ""}
             </div>
           </div>
         </div>
@@ -131,7 +180,7 @@ export default function StreamerPage() {
   };
 
   const baseUrl = typeof window !== 'undefined' ? window.location.origin : '';
-  const carouselUrl = `${baseUrl}/streamer/drops-carousel?borderColor=${borderColor}&textColor=${textColor}&speed=${speed}&font=${font}`;
+  const carouselUrl = `${baseUrl}/streamer/drops-carousel/drops-4?borderColor=${borderColor}&textColor=${textColor}&speed=${speed}&font=${font}`;
 
   return (
     <div className="min-h-screen bg-planet-background">
@@ -450,13 +499,80 @@ export default function StreamerPage() {
               </div>
             </div>
           </div>
+
+          {/* Overview Section - Full Width */}
+          <div className="bg-planet-card border border-planet-accent rounded-lg p-6 mt-8">
+            <h3 className="text-xl font-bold text-planet-accent mb-6 flex items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-layout-grid"><rect width="7" height="7" x="3" y="3" rx="1" /><rect width="7" height="7" x="14" y="3" rx="1" /><rect width="7" height="7" x="14" y="14" rx="1" /><rect width="7" height="7" x="3" y="14" rx="1" /></svg>
+              Overview Image
+            </h3>
+            
+            <div className="grid lg:grid-cols-2 gap-8">
+              {/* Left Column - Image */}
+              <div className="space-y-4">
+                <div className="bg-planet-secondary border border-planet-border rounded-lg p-4 flex justify-center">
+                  <img 
+                    src="/images/campaigns/streamer/drops-4/Overview.png"
+                    alt="DUNE AWAKENING Drops 4 Overview"
+                    className="max-w-full h-auto rounded-lg"
+                  />
+                </div>
+              </div>
+
+              {/* Right Column - Description and Link */}
+              <div className="space-y-4">
+                <div>
+                  <h4 className="font-semibold text-planet-accent text-lg mb-3">
+                    Static Overview Image
+                  </h4>
+                  <p className="text-planet-accent/80 mb-4">
+                    If you prefer to use a static overview image showing all the drops at once, you can use this image instead of the animated carousel. This is perfect for streamers who want to display all rewards on a single screen.
+                  </p>
+                  
+                  <div className="bg-planet-secondary border border-planet-border rounded p-4 mb-4">
+                    <h5 className="font-semibold text-planet-accent text-sm mb-2">Direct Image URL:</h5>
+                    <div className="flex gap-2">
+                      <input
+                        type="text"
+                        value={`${baseUrl}/images/campaigns/streamer/drops-4/Overview.png`}
+                        readOnly
+                        className="flex-1 bg-planet-background border border-planet-border rounded px-3 py-2 text-sm text-planet-accent/90 font-mono"
+                      />
+                      <button
+                        onClick={() => copyToClipboard(`${baseUrl}/images/campaigns/streamer/drops-4/Overview.png`)}
+                        className="bg-planet-accent text-black px-4 py-2 rounded hover:bg-planet-accent-hover transition-colors flex items-center gap-2 whitespace-nowrap"
+                      >
+                        {copiedUrl ? (
+                          <>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-check"><path d="M20 6 9 17l-5-5"/></svg>
+                            Copied!
+                          </>
+                        ) : (
+                          <>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-copy"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                            Copy URL
+                          </>
+                        )}
+                      </button>
+                    </div>
+                  </div>
+                  
+                  <div className="bg-planet-highlight/20 border border-planet-highlight/50 rounded p-3">
+                    <p className="text-xs text-planet-accent/90">
+                      💡 <strong>Pro Tip:</strong> Use this static image in OBS as an Image source. Set the size to match your layout needs, and consider adding it to a scene that shows during breaks or when explaining the drops to your viewers.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </main>
 
         {/* Footer */}
         <footer className="border-t border-planet-border bg-planet-secondary mt-16">
           <div className="container mx-auto px-4 py-6">
             <div className="text-center text-planet-accent/70 text-sm">
-              Perfect for showcasing Dune: Awakening Observer Drops 3 on your stream!
+              Perfect for showcasing DUNE AWAKENING Observer Drops 4 on your stream!
             </div>
           </div>
         </footer>

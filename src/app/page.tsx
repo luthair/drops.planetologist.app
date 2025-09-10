@@ -2,6 +2,7 @@
 
 import { StreamerGrid } from "~/components/streamer-grid";
 import { DropsAccordion } from "~/components/drops-accordion";
+import { CountdownBanner } from "~/components/countdown-banner";
 import { getDropsCampaigns, getSiteContent } from "~/lib/content";
 import { useStreamers } from "~/hooks/use-streamers";
 import { Twitch, Gamepad2 } from "lucide-react";
@@ -48,15 +49,21 @@ export default function HomePage() {
           <div className="space-y-12">
             {/* Hero Section */}
             
+            {/* Campaign Countdown Banner */}
+            <CountdownBanner 
+              targetDate={new Date("2025-09-11T14:00:00.000Z")}
+              message="New Drops Campaign unlocks in"
+            />
+            
             {/* Dune Streamers Section */}
             <section>
               <StreamerGrid 
                 streamers={duneStreamers} 
                 isLoading={isLoading} 
                 error={error}
-                title="Dune: Awakening Streamers"
+                title="DUNE AWAKENING Streamers"
                 subtitle="Live streamers playing on Arrakis"
-                emptyMessage="No streamers currently playing Dune: Awakening"
+                emptyMessage="No streamers currently playing DUNE AWAKENING"
               />
             </section>
 
@@ -70,9 +77,9 @@ export default function HomePage() {
               <StreamerGrid 
                 streamers={nonDuneStreamers} 
                 isLoading={isLoading}
-                title="Our Streamers NOT playing Dune"
+                title="Our Streamers NOT playing DUNE AWAKENING"
                 subtitle="Check what else they're playing"
-                emptyMessage="All our streamers are currently playing Dune: Awakening"
+                emptyMessage="All our streamers are currently playing DUNE AWAKENING"
               />
             </section>
           </div>

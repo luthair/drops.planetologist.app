@@ -1,0 +1,176 @@
+"use client";
+
+import { useState, useEffect, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
+
+function DropsCarouselContent() {
+  const searchParams = useSearchParams();
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  
+  // Customization parameters
+  const borderColor = searchParams.get('borderColor') ?? 'C1995B';
+  const textColor = searchParams.get('textColor') ?? 'C1995B';
+  const speed = searchParams.get('speed') ?? 'normal';
+  const font = searchParams.get('font') ?? 'default';
+  
+  // Speed mapping
+  const speedMap = {
+    slow: 4000,
+    normal: 3000,
+    fast: 2000
+  };
+  
+  const interval = speedMap[speed as keyof typeof speedMap] ?? speedMap.normal;
+  
+  // Campaign 4 images with metadata
+  const images = [
+    {
+      path: '/images/campaigns/streamer/drops-4/01_Inverted_Corners_1h_card.png',
+      name: 'Inverted Corners',
+      watchTime: '1h'
+    },
+    {
+      path: '/images/campaigns/streamer/drops-4/02_Corners_1h_card.png',
+      name: 'Corners',
+      watchTime: '1h'
+    },
+    {
+      path: '/images/campaigns/streamer/drops-4/03_Round_Window_2h_card.png',
+      name: 'Round Window',
+      watchTime: '2h'
+    },
+    {
+      path: '/images/campaigns/streamer/drops-4/04_Ladders_2h_card.png',
+      name: 'Ladders',
+      watchTime: '2h'
+    },
+    {
+      path: '/images/campaigns/streamer/drops-4/05_Column2_2h_card.png',
+      name: 'Column2',
+      watchTime: '2h'
+    },
+    {
+      path: '/images/campaigns/streamer/drops-4/06_Pillar_3h_card.png',
+      name: 'Pillar',
+      watchTime: '3h'
+    },
+    {
+      path: '/images/campaigns/streamer/drops-4/07_Pillar_Bottom_3h_card.png',
+      name: 'Pillar Bottom',
+      watchTime: '3h'
+    },
+    {
+      path: '/images/campaigns/streamer/drops-4/08_Pillar_Top_3h_card.png',
+      name: 'Pillar Top',
+      watchTime: '3h'
+    }
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => 
+        (prevIndex + 1) % images.length
+      );
+    }, interval);
+
+    return () => clearInterval(timer);
+  }, [images.length, interval]);
+
+  const hexToBorderColor = (hex: string) => `#${hex.replace('#', '')}`;
+  const hexToTextColor = (hex: string) => `#${hex.replace('#', '')}`;
+  
+  const getFontFamily = (fontType: string) => {
+    switch (fontType) {
+      case 'goblin':
+        return 'Comic Sans MS, cursive';
+      case 'monospace':
+        return 'monospace';
+      default:
+        return 'inherit';
+    }
+  };
+
+  const currentImage = images[currentImageIndex];
+
+  return (
+    <div className="w-[300px] h-[450px] overflow-hidden">
+      <style jsx>{`
+        @keyframes fadeInOut {
+          0% { opacity: 0; transform: scale(1.05); }
+          10% { opacity: 1; transform: scale(1); }
+          90% { opacity: 1; transform: scale(1); }
+          100% { opacity: 0; transform: scale(0.95); }
+        }
+        
+        .image-container {
+          border: 3px solid ${hexToBorderColor(borderColor)};
+          position: relative;
+          overflow: hidden;
+        }
+        
+        .cycling-image {
+          transition: opacity 500ms ease-in-out;
+        }
+        
+        .drops-subtitle {
+          color: ${hexToTextColor(textColor)};
+          text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+          font-family: ${getFontFamily(font)};
+        }
+        
+        .item-name {
+          font-size: 1.5rem;
+          font-weight: bold;
+          margin-top: 1rem;
+        }
+        
+        .watch-time {
+          font-size: 1.1rem;
+          font-weight: bold;
+          margin-bottom: 1.5rem;
+        }
+      `}</style>
+      
+      <div className="image-container w-full h-full rounded-lg relative">
+        {/* Background Images */}
+        {images.map((image, index) => (
+          <img
+            key={index}
+            src={image.path}
+            alt={`DUNE AWAKENING ${image.name}`}
+            className={`cycling-image absolute inset-0 w-full h-full object-cover ${
+              index === currentImageIndex ? 'opacity-100' : 'opacity-0'
+            }`}
+          />
+        ))}
+        
+        {/* Overlay Content */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30 flex flex-col justify-between p-4 z-10">
+          {/* Top Section - Item Name */}
+          <div className="text-center">
+            <p className="drops-subtitle item-name">
+              {currentImage?.name ?? ""}
+            </p>
+          </div>
+          
+          {/* Bottom Section - Watch Time */}
+          <div className="text-center">
+            <div className="drops-subtitle watch-time">
+              Watch for {currentImage?.watchTime ?? ""}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default function DropsCarousel() {
+  return (
+    <Suspense fallback={<div className="w-[300px] h-[450px] bg-gray-900 rounded-lg flex items-center justify-center">
+      <div className="text-white">Loading...</div>
+    </div>}>
+      <DropsCarouselContent />
+    </Suspense>
+  );
+}

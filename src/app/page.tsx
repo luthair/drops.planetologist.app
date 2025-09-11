@@ -61,9 +61,9 @@ export default function HomePage() {
                 streamers={duneStreamers} 
                 isLoading={isLoading} 
                 error={error}
-                title="DUNE AWAKENING Streamers"
+                title="Dune: Awakening Streamers"
                 subtitle="Live streamers playing on Arrakis"
-                emptyMessage="No streamers currently playing DUNE AWAKENING"
+                emptyMessage="No streamers currently playing Dune: Awakening"
               />
             </section>
 
@@ -77,9 +77,9 @@ export default function HomePage() {
               <StreamerGrid 
                 streamers={nonDuneStreamers} 
                 isLoading={isLoading}
-                title="Our Streamers NOT playing DUNE AWAKENING"
+                title="Our Streamers NOT playing Dune: Awakening"
                 subtitle="Check what else they're playing"
-                emptyMessage="All our streamers are currently playing DUNE AWAKENING"
+                emptyMessage="All our streamers are currently playing Dune: Awakening"
               />
             </section>
           </div>

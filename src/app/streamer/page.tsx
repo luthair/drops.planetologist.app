@@ -134,7 +134,7 @@ function DropsCarouselPreview({ borderColor, textColor, speed, font }: {
           <img
             key={index}
             src={image.path}
-            alt={`DUNE AWAKENING ${image.name}`}
+            alt={`Dune: Awakening ${image.name}`}
             className={`cycling-image absolute inset-0 w-full h-full object-cover ${
               index === currentImageIndex ? 'opacity-100' : 'opacity-0'
             }`}
@@ -164,8 +164,8 @@ function DropsCarouselPreview({ borderColor, textColor, speed, font }: {
 
 export default function StreamerPage() {
   const [copiedUrl, setCopiedUrl] = useState(false);
-  const [borderColor, setBorderColor] = useState('C1995B');
-  const [textColor, setTextColor] = useState('C1995B');
+  const [borderColor, setBorderColor] = useState('FAA9FF');
+  const [textColor, setTextColor] = useState('FAA9FF');
   const [speed, setSpeed] = useState('normal');
   const [font, setFont] = useState('default');
 
@@ -354,6 +354,16 @@ export default function StreamerPage() {
                     </button>
                     <button
                       onClick={() => {
+                        setBorderColor('FAA9FF');
+                        setTextColor('FAA9FF');
+                        setFont('default');
+                      }}
+                      className="bg-planet-secondary border border-planet-border rounded px-3 py-2 text-xs text-planet-accent hover:bg-planet-accent/10 transition-colors"
+                    >
+                      Pink (Highlight)
+                    </button>
+                    <button
+                      onClick={() => {
                         setBorderColor('ff6b35');
                         setTextColor('ff6b35');
                         setFont('goblin');
@@ -371,16 +381,6 @@ export default function StreamerPage() {
                       className="bg-planet-secondary border border-planet-border rounded px-3 py-2 text-xs text-planet-accent hover:bg-planet-accent/10 transition-colors"
                     >
                       Blue + Mono
-                    </button>
-                    <button
-                      onClick={() => {
-                        setBorderColor('22c55e');
-                        setTextColor('FFFFFF');
-                        setFont('default');
-                      }}
-                      className="bg-planet-secondary border border-planet-border rounded px-3 py-2 text-xs text-planet-accent hover:bg-planet-accent/10 transition-colors"
-                    >
-                      Green + White
                     </button>
                   </div>
                 </div>
@@ -500,6 +500,117 @@ export default function StreamerPage() {
             </div>
           </div>
 
+          {/* Countdown Timer Section - Full Width */}
+          <div className="bg-planet-card border border-planet-accent rounded-lg p-6 mt-8">
+            <h3 className="text-xl font-bold text-planet-accent mb-6 flex items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-timer"><path d="M10 2h4"/><path d="M12 14v-4"/><path d="M4 13a8 8 0 0 1 8-7 8 8 0 1 1-5.3 14L4 17.6"/><path d="M9 17H4v5"/></svg>
+              Countdown Timer
+            </h3>
+            
+            <div className="grid lg:grid-cols-2 gap-8">
+              {/* Left Column - Preview */}
+              <div className="space-y-4">
+                <div className="bg-planet-secondary border border-planet-border rounded-lg p-4 flex justify-center items-center" style={{ height: "200px" }}>
+                  <iframe 
+                    src={`${baseUrl}/streamer/countdown?borderColor=${borderColor}&textColor=${textColor}&font=${font}&singleLine=true`}
+                    className="w-full h-full border-0"
+                    title="DUNE AWAKENING Drops Countdown"
+                  />
+                </div>
+              </div>
+
+              {/* Right Column - Description and Link */}
+              <div className="space-y-4">
+                <div>
+                  <h4 className="font-semibold text-planet-accent text-lg mb-3">
+                    Drops Release Countdown
+                  </h4>
+                  <p className="text-planet-accent/80 mb-4">
+                    Add this countdown timer to your stream to let viewers know when the new drops campaign will be available. The timer automatically updates and will display a &quot;Campaign is now LIVE!&quot; message once the campaign starts.
+                  </p>
+                  
+                  <div className="bg-planet-secondary border border-planet-border rounded p-4 mb-4">
+                    <h5 className="font-semibold text-planet-accent text-sm mb-2">Standard Countdown URL:</h5>
+                    <div className="flex gap-2">
+                      <input
+                        type="text"
+                        value={`${baseUrl}/streamer/countdown?borderColor=${borderColor}&textColor=${textColor}&font=${font}&singleLine=true`}
+                        readOnly
+                        className="flex-1 bg-planet-background border border-planet-border rounded px-3 py-2 text-sm text-planet-accent/90 font-mono"
+                      />
+                      <button
+                        onClick={() => copyToClipboard(`${baseUrl}/streamer/countdown?borderColor=${borderColor}&textColor=${textColor}&font=${font}&singleLine=true`)}
+                        className="bg-planet-accent text-black px-4 py-2 rounded hover:bg-planet-accent-hover transition-colors flex items-center gap-2 whitespace-nowrap"
+                      >
+                        {copiedUrl ? (
+                          <>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-check"><path d="M20 6 9 17l-5-5"/></svg>
+                            Copied!
+                          </>
+                        ) : (
+                          <>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-copy"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                            Copy URL
+                          </>
+                        )}
+                      </button>
+                    </div>
+                    
+                    <h5 className="font-semibold text-planet-accent text-sm mb-2 mt-4">Compact Countdown URL:</h5>
+                    <div className="flex gap-2">
+                      <input
+                        type="text"
+                        value={`${baseUrl}/streamer/countdownshort?borderColor=${borderColor}&textColor=${textColor}&font=${font}`}
+                        readOnly
+                        className="flex-1 bg-planet-background border border-planet-border rounded px-3 py-2 text-sm text-planet-accent/90 font-mono"
+                      />
+                      <button
+                        onClick={() => copyToClipboard(`${baseUrl}/streamer/countdownshort?borderColor=${borderColor}&textColor=${textColor}&font=${font}`)}
+                        className="bg-planet-accent text-black px-4 py-2 rounded hover:bg-planet-accent-hover transition-colors flex items-center gap-2 whitespace-nowrap"
+                      >
+                        {copiedUrl ? (
+                          <>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-check"><path d="M20 6 9 17l-5-5"/></svg>
+                            Copied!
+                          </>
+                        ) : (
+                          <>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-copy"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                            Copy URL
+                          </>
+                        )}
+                      </button>
+                    </div>
+                    
+                    <div className="mt-3 space-y-2">
+                      <h5 className="font-semibold text-planet-accent text-sm">Customization Options:</h5>
+                      <div className="grid grid-cols-2 gap-2 text-xs text-planet-accent/80">
+                        <div>
+                          <strong>size</strong>: small, medium, large
+                        </div>
+                        <div>
+                          <strong>showBorder</strong>: true, false
+                        </div>
+                        <div>
+                          <strong>title</strong>: Custom text
+                        </div>
+                      </div>
+                      <p className="text-xs text-planet-accent/70 italic">
+                        Example: &size=large&showBorder=false&title=Drops%20Coming%20Soon
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <div className="bg-planet-highlight/20 border border-planet-highlight/50 rounded p-3">
+                    <p className="text-xs text-planet-accent/90">
+                      💡 <strong>Pro Tip:</strong> Add this as a Browser Source in OBS with dimensions of 400x100. The countdown will automatically disappear when the campaign starts, so you don&apos;t need to remove it manually.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
           {/* Overview Section - Full Width */}
           <div className="bg-planet-card border border-planet-accent rounded-lg p-6 mt-8">
             <h3 className="text-xl font-bold text-planet-accent mb-6 flex items-center gap-2">
@@ -513,7 +624,7 @@ export default function StreamerPage() {
                 <div className="bg-planet-secondary border border-planet-border rounded-lg p-4 flex justify-center">
                   <img 
                     src="/images/campaigns/streamer/drops-4/Overview.png"
-                    alt="DUNE AWAKENING Drops 4 Overview"
+                    alt="Dune: Awakening Drops 4 Overview"
                     className="max-w-full h-auto rounded-lg"
                   />
                 </div>
@@ -572,7 +683,7 @@ export default function StreamerPage() {
         <footer className="border-t border-planet-border bg-planet-secondary mt-16">
           <div className="container mx-auto px-4 py-6">
             <div className="text-center text-planet-accent/70 text-sm">
-              Perfect for showcasing DUNE AWAKENING Observer Drops 4 on your stream!
+              Perfect for showcasing Dune: Awakening Observer Drops 4 on your stream!
             </div>
           </div>
         </footer>

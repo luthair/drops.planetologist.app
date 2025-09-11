@@ -41,7 +41,7 @@ export async function GET() {
     });
 
     // Define Dune game name
-    const DUNE_GAME_NAME = "DUNE AWAKENING";
+    const DUNE_GAME_NAME = "Dune: Awakening";
     
     // Filter for streamers that are online
     const allOnlineStreamers = streamers.filter(streamer => streamer.isOnline);

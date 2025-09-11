@@ -1,7 +1,7 @@
 {
   "site": {
     "name": "Dune: Awakening Drops Tracker",
-    "gameTitle": "DUNE AWAKENING",
+    "gameTitle": "Dune: Awakening",
     "refreshInterval": 30000,
     "showOfflineStreamers": false
   },

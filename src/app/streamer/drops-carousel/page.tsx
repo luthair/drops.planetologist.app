@@ -86,7 +86,7 @@ function DropsCarouselContent() {
           <img
             key={index}
             src={image}
-            alt={`Dune Awakening Drop ${index + 1}`}
+            alt={`Dune: Awakening Drop ${index + 1}`}
             className={`cycling-image absolute inset-0 w-full h-full object-cover ${
               index === currentImageIndex ? 'opacity-100' : 'opacity-0'
             }`}

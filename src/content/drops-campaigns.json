@@ -2,29 +2,29 @@
   "campaigns": [
     {
       "id": "observer-drops-4-2025",
-      "title": "DUNE AWAKENING Drops 4",
-      "description": "Experience the desert planet of Arrakis and earn exclusive in-game rewards! Get unique building components and architectural elements by watching DUNE AWAKENING streams.",
+      "title": "Dune: Awakening Drops 4",
+      "description": "Experience the desert planet of Arrakis and earn exclusive in-game rewards! Get unique building components and architectural elements by watching Dune: Awakening streams.",
       "startDate": "2025-09-11T14:00:00.000Z",
       "endDate": "2025-10-08T14:00:00.000Z",
       "isActive": true,
       "imageUrl": "/images/campaigns/streamer/drops-4/drops-4-campaign.jpg",
-      "gameTitle": "DUNE AWAKENING",
+      "gameTitle": "Dune: Awakening",
       "requirements": [
         "Watch for 1 hour to unlock Inverted Corner Stairs and Corner Stairs",
         "Watch for 2 hours to unlock Round Window, Ladders and Column2",
         "Watch for 3 hours to unlock Pillar, Pillar Bottom and Pillar Top",
-        "Must have linked Steam and Twitch with DUNE AWAKENING account"
+        "Must have linked Steam and Twitch with Dune: Awakening account"
       ]
     },
     {
       "id": "observer-drops-3-2025",
-      "title": "DUNE AWAKENING Drops 3",
+      "title": "Dune: Awakening Drops 3",
       "description": "Experience the desert planet of Arrakis and earn exclusive in-game rewards! Get unique stillsuits, ornithopter skins, and desert survival gear by watching Dune: Awakening streams during launch week.",
       "startDate": "2025-08-14T14:00:00.000Z",
       "endDate": "2025-09-04T23:59:59.000Z",
       "isActive": true,
       "imageUrl": "/images/campaigns/observer-drops-3.jpg",
-      "gameTitle": "DUNE AWAKENING",
+      "gameTitle": "Dune: Awakening",
       "requirements": [
         "Watch for 30 mins to unlock the Observer Column",
         "Watch for 1 hours to unlock the Observer round roof and foundation",
@@ -40,7 +40,7 @@
       "endDate": "2024-07-08T23:59:59.000Z",
       "isActive": false,
       "imageUrl": "/images/campaigns/support-creator.jpg",
-      "gameTitle": "DUNE AWAKENING",
+      "gameTitle": "Dune: Awakening",
       "requirements": [
         "Subscribe with 2 Subs to any participating streamer or gift 2 subs (any level) to receive the Atreides Officer Suit",
         "Must have linked Steam and Twitch with Dune: Awakening account"
@@ -48,13 +48,13 @@
     },
     {
       "id": "observer-drops-2-2025",
-      "title": "DUNE AWAKENING Drops 2",
+      "title": "Dune: Awakening Drops 2",
       "description": "Experience the desert planet of Arrakis and earn exclusive in-game rewards! Get unique stillsuits, ornithopter skins, and desert survival gear by watching Dune: Awakening streams during launch week.",
       "startDate": "2025-07-10T14:00:00.000Z",
       "endDate": "2025-08-07T23:59:59.000Z",
       "isActive": false,
       "imageUrl": "/images/campaigns/observer-drops-2.jpg",
-      "gameTitle": "DUNE AWAKENING",
+      "gameTitle": "Dune: Awakening",
       "requirements": [
         "Watch for 30 mins to unlock the Observer Passageway",
         "Watch for 1 hours to unlock the Observer Stairs",
@@ -64,13 +64,13 @@
     },
     {
       "id": "observer-drops-1-2025",
-      "title": "DUNE AWAKENING Launch Drops",
+      "title": "Dune: Awakening Launch Drops",
       "description": "Experience the desert planet of Arrakis and earn exclusive in-game rewards! Get unique stillsuits, ornithopter skins, and desert survival gear by watching Dune: Awakening streams during launch week.",
       "startDate": "2025-06-05T14:00:00.000Z",
       "endDate": "2025-06-24T23:59:59.000Z",
       "isActive": false,
       "imageUrl": "/images/campaigns/observer-drops-1.jpg",
-      "gameTitle": "DUNE AWAKENING",
+      "gameTitle": "Dune: Awakening",
       "requirements": [
         "Watch for 30 mins to unlock the Observer Foundation",
         "Watch for 1 hours to unlock the Observer Floor",

@@ -15,9 +15,9 @@ function DropsCarouselContent() {
   
   // Speed mapping
   const speedMap = {
-    slow: 4000,
-    normal: 3000,
-    fast: 2000
+    slow: 20000,  // 20 seconds
+    normal: 15000, // 15 seconds
+    fast: 10000   // 10 seconds
   };
   
   const interval = speedMap[speed as keyof typeof speedMap] ?? speedMap.normal;
@@ -70,7 +70,7 @@ function DropsCarouselContent() {
         }
         
         .cycling-image {
-          transition: opacity 500ms ease-in-out;
+          transition: opacity 2000ms ease-in-out;
         }
         
         .drops-subtitle {

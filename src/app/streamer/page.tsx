@@ -14,9 +14,9 @@ function DropsCarouselPreview({ borderColor, textColor, speed, font }: {
   
   // Speed mapping
   const speedMap = {
-    slow: 4000,
-    normal: 3000,
-    fast: 2000
+    slow: 20000,  // 20 seconds
+    normal: 15000, // 15 seconds
+    fast: 10000   // 10 seconds
   };
   
   const interval = speedMap[speed as keyof typeof speedMap] ?? speedMap.normal;
@@ -106,7 +106,7 @@ function DropsCarouselPreview({ borderColor, textColor, speed, font }: {
         }
         
         .cycling-image {
-          transition: opacity 500ms ease-in-out;
+          transition: opacity 2000ms ease-in-out;
         }
         
         .drops-subtitle {
@@ -330,9 +330,9 @@ export default function StreamerPage() {
                     onChange={(e) => setSpeed(e.target.value)}
                     className="w-full bg-planet-secondary border border-planet-border rounded px-3 py-2 text-sm text-planet-accent"
                   >
-                    <option value="slow">Slow (4 seconds)</option>
-                    <option value="normal">Normal (3 seconds)</option>
-                    <option value="fast">Fast (2 seconds)</option>
+                    <option value="slow">Slow (20 seconds)</option>
+                    <option value="normal">Normal (15 seconds)</option>
+                    <option value="fast">Fast (10 seconds)</option>
                   </select>
                 </div>
 

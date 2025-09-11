@@ -1,10 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { Clock } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 
-export default function CountdownPage() {
+function CountdownContent() {
   const searchParams = useSearchParams();
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
@@ -165,5 +165,15 @@ export default function CountdownPage() {
         )}
       </div>
     </div>
+  );
+}
+
+export default function CountdownPage() {
+  return (
+    <Suspense fallback={<div className="flex items-center justify-center h-full">
+      <div className="text-center">Loading...</div>
+    </div>}>
+      <CountdownContent />
+    </Suspense>
   );
 }

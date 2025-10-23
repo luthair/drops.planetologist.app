@@ -1,6 +1,22 @@
 {
   "campaigns": [
     {
+      "id": "observer-drops-5-2025",
+      "title": "Dune: Awakening Drops 5",
+      "description": "Experience the desert planet of Arrakis and earn exclusive in-game rewards! Get unique building components including Triangle Walls, Half Walls & Half Triangles, and Hatch Frame & Door by watching Dune: Awakening streams.",
+      "startDate": "2025-10-23T14:00:00.000Z",
+      "endDate": "2025-11-19T14:00:00.000Z",
+      "isActive": true,
+      "imageUrl": "/images/campaigns/streamer/drops-5/drops_5_campaign.jpeg",
+      "gameTitle": "Dune: Awakening",
+      "requirements": [
+        "Watch for 1 hour to unlock Triangle Walls (Top Left, Top Right, Bottom Left, Bottom Right)",
+        "Watch for 2 hours to unlock Half Wall & Half Triangles (Top Left, Top Right, Bottom Left, Bottom Right and Half Height Wall)",
+        "Watch for 3 hours to unlock Hatch Frame & Hatch Door",
+        "Must have linked Steam and Twitch with Dune: Awakening account"
+      ]
+    },
+    {
       "id": "observer-drops-4-2025",
       "title": "Dune: Awakening Drops 4",
       "description": "Experience the desert planet of Arrakis and earn exclusive in-game rewards! Get unique building components and architectural elements by watching Dune: Awakening streams.",

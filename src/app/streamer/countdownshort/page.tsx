@@ -23,8 +23,8 @@ function CountdownShortContent() {
   const showBorder = searchParams.get('showBorder') !== 'false';
   const size = searchParams.get('size') ?? 'medium';
   
-  // Target date string (September 11th, 2025 at 2:00 PM UTC)
-  const targetDateString = "2025-09-11T14:00:00.000Z";
+  // Target date string (October 23rd, 2025 at 4:00 PM UTC+2 / 2:00 PM UTC)
+  const targetDateString = "2025-10-23T14:00:00.000Z";
 
   useEffect(() => {
     const targetDate = new Date(targetDateString);

@@ -21,46 +21,21 @@ function DropsCarouselPreview({ borderColor, textColor, speed, font }: {
   
   const interval = speedMap[speed as keyof typeof speedMap] ?? speedMap.normal;
   
-  // Campaign 4 images with metadata
+  // Campaign 5 images with metadata
   const images = [
     {
-      path: '/images/campaigns/streamer/drops-4/01_Inverted_Corners_1h_card.png',
-      name: 'Inverted Corners',
+      path: '/images/campaigns/streamer/drops-5/drops_5_1.png',
+      name: 'Triangle Walls',
       watchTime: '1h'
     },
     {
-      path: '/images/campaigns/streamer/drops-4/02_Corners_1h_card.png',
-      name: 'Corners',
-      watchTime: '1h'
-    },
-    {
-      path: '/images/campaigns/streamer/drops-4/03_Round_Window_2h_card.png',
-      name: 'Round Window',
+      path: '/images/campaigns/streamer/drops-5/drops_5_2.png',
+      name: 'Half Wall & Half Triangles',
       watchTime: '2h'
     },
     {
-      path: '/images/campaigns/streamer/drops-4/04_Ladders_2h_card.png',
-      name: 'Ladders',
-      watchTime: '2h'
-    },
-    {
-      path: '/images/campaigns/streamer/drops-4/05_Column2_2h_card.png',
-      name: 'Column2',
-      watchTime: '2h'
-    },
-    {
-      path: '/images/campaigns/streamer/drops-4/06_Pillar_3h_card.png',
-      name: 'Pillar',
-      watchTime: '3h'
-    },
-    {
-      path: '/images/campaigns/streamer/drops-4/07_Pillar_Bottom_3h_card.png',
-      name: 'Pillar Bottom',
-      watchTime: '3h'
-    },
-    {
-      path: '/images/campaigns/streamer/drops-4/08_Pillar_Top_3h_card.png',
-      name: 'Pillar Top',
+      path: '/images/campaigns/streamer/drops-5/drops_5_3.png',
+      name: 'Hatch Frame & Hatch Door',
       watchTime: '3h'
     }
   ];
@@ -135,7 +110,7 @@ function DropsCarouselPreview({ borderColor, textColor, speed, font }: {
             key={index}
             src={image.path}
             alt={`Dune: Awakening ${image.name}`}
-            className={`cycling-image absolute inset-0 w-full h-full object-cover ${
+            className={`cycling-image absolute inset-0 w-full h-full object-contain ${
               index === currentImageIndex ? 'opacity-100' : 'opacity-0'
             }`}
           />
@@ -180,7 +155,7 @@ export default function StreamerPage() {
   };
 
   const baseUrl = typeof window !== 'undefined' ? window.location.origin : '';
-  const carouselUrl = `${baseUrl}/streamer/drops-carousel/drops-4?borderColor=${borderColor}&textColor=${textColor}&speed=${speed}&font=${font}`;
+  const carouselUrl = `${baseUrl}/streamer/drops-carousel/drops-5?borderColor=${borderColor}&textColor=${textColor}&speed=${speed}&font=${font}`;
 
   return (
     <div className="min-h-screen bg-planet-background">
@@ -514,7 +489,7 @@ export default function StreamerPage() {
                   <iframe 
                     src={`${baseUrl}/streamer/countdown?borderColor=${borderColor}&textColor=${textColor}&font=${font}&singleLine=true`}
                     className="w-full h-full border-0"
-                    title="DUNE AWAKENING Drops Countdown"
+                    title="Dune: Awakening Drops Countdown"
                   />
                 </div>
               </div>
@@ -623,8 +598,8 @@ export default function StreamerPage() {
               <div className="space-y-4">
                 <div className="bg-planet-secondary border border-planet-border rounded-lg p-4 flex justify-center">
                   <img 
-                    src="/images/campaigns/streamer/drops-4/Overview.png"
-                    alt="Dune: Awakening Drops 4 Overview"
+                    src="/images/campaigns/streamer/drops-5/drops_5_campaign.jpeg"
+                    alt="Dune: Awakening Drops 5 Overview"
                     className="max-w-full h-auto rounded-lg"
                   />
                 </div>
@@ -645,12 +620,12 @@ export default function StreamerPage() {
                     <div className="flex gap-2">
                       <input
                         type="text"
-                        value={`${baseUrl}/images/campaigns/streamer/drops-4/Overview.png`}
+                        value={`${baseUrl}/images/campaigns/streamer/drops-5/drops_5_campaign.jpeg`}
                         readOnly
                         className="flex-1 bg-planet-background border border-planet-border rounded px-3 py-2 text-sm text-planet-accent/90 font-mono"
                       />
                       <button
-                        onClick={() => copyToClipboard(`${baseUrl}/images/campaigns/streamer/drops-4/Overview.png`)}
+                        onClick={() => copyToClipboard(`${baseUrl}/images/campaigns/streamer/drops-5/drops_5_campaign.jpeg`)}
                         className="bg-planet-accent text-black px-4 py-2 rounded hover:bg-planet-accent-hover transition-colors flex items-center gap-2 whitespace-nowrap"
                       >
                         {copiedUrl ? (
@@ -683,7 +658,7 @@ export default function StreamerPage() {
         <footer className="border-t border-planet-border bg-planet-secondary mt-16">
           <div className="container mx-auto px-4 py-6">
             <div className="text-center text-planet-accent/70 text-sm">
-              Perfect for showcasing Dune: Awakening Observer Drops 4 on your stream!
+              Perfect for showcasing Dune: Awakening Drops 5 on your stream!
             </div>
           </div>
         </footer>

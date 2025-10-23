@@ -1,0 +1,151 @@
+"use client";
+
+import { useState, useEffect, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
+
+function DropsCarouselContent() {
+  const searchParams = useSearchParams();
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  
+  // Customization parameters
+  const borderColor = searchParams.get('borderColor') ?? 'FAA9FF';
+  const textColor = searchParams.get('textColor') ?? 'FAA9FF';
+  const speed = searchParams.get('speed') ?? 'normal';
+  const font = searchParams.get('font') ?? 'default';
+  
+  // Speed mapping
+  const speedMap = {
+    slow: 20000,  // 20 seconds
+    normal: 15000, // 15 seconds
+    fast: 10000   // 10 seconds
+  };
+  
+  const interval = speedMap[speed as keyof typeof speedMap] ?? speedMap.normal;
+  
+  // Campaign 5 images with metadata
+  const images = [
+    {
+      path: '/images/campaigns/streamer/drops-5/drops_5_1.png',
+      name: 'Triangle Walls',
+      watchTime: '1h'
+    },
+    {
+      path: '/images/campaigns/streamer/drops-5/drops_5_2.png',
+      name: 'Half Wall & Half Triangles',
+      watchTime: '2h'
+    },
+    {
+      path: '/images/campaigns/streamer/drops-5/drops_5_3.png',
+      name: 'Hatch Frame & Hatch Door',
+      watchTime: '3h'
+    }
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => 
+        (prevIndex + 1) % images.length
+      );
+    }, interval);
+
+    return () => clearInterval(timer);
+  }, [images.length, interval]);
+
+  const hexToBorderColor = (hex: string) => `#${hex.replace('#', '')}`;
+  const hexToTextColor = (hex: string) => `#${hex.replace('#', '')}`;
+  
+  const getFontFamily = (fontType: string) => {
+    switch (fontType) {
+      case 'goblin':
+        return 'Comic Sans MS, cursive';
+      case 'monospace':
+        return 'monospace';
+      default:
+        return 'inherit';
+    }
+  };
+
+  const currentImage = images[currentImageIndex];
+
+  return (
+    <div className="w-[300px] h-[450px] overflow-hidden">
+      <style jsx>{`
+        @keyframes fadeInOut {
+          0% { opacity: 0; transform: scale(1.05); }
+          10% { opacity: 1; transform: scale(1); }
+          90% { opacity: 1; transform: scale(1); }
+          100% { opacity: 0; transform: scale(0.95); }
+        }
+        
+        .image-container {
+          border: 3px solid ${hexToBorderColor(borderColor)};
+          position: relative;
+          overflow: hidden;
+        }
+        
+        .cycling-image {
+          transition: opacity 2000ms ease-in-out;
+        }
+        
+        .drops-subtitle {
+          color: ${hexToTextColor(textColor)};
+          text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+          font-family: ${getFontFamily(font)};
+        }
+        
+        .item-name {
+          font-size: 1.5rem;
+          font-weight: bold;
+          margin-top: 0rem;
+        }
+        
+        .watch-time {
+          font-size: 1.1rem;
+          font-weight: bold;
+          margin-bottom: 0.5rem;
+        }
+      `}</style>
+      
+      <div className="image-container w-full h-full rounded-lg relative">
+        {/* Background Images */}
+        {images.map((image, index) => (
+          <img
+            key={index}
+            src={image.path}
+            alt={`Dune: Awakening ${image.name}`}
+            className={`cycling-image absolute inset-0 w-full h-full object-contain ${
+              index === currentImageIndex ? 'opacity-100' : 'opacity-0'
+            }`}
+          />
+        ))}
+        
+        {/* Overlay Content */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30 flex flex-col justify-between p-4 z-10">
+          {/* Top Section - Item Name */}
+          <div className="text-center">
+            <p className="drops-subtitle item-name">
+              {currentImage?.name ?? ""}
+            </p>
+          </div>
+          
+          {/* Bottom Section - Watch Time */}
+          <div className="text-center">
+            <div className="drops-subtitle watch-time">
+              Watch for {currentImage?.watchTime ?? ""}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default function DropsCarousel() {
+  return (
+    <Suspense fallback={<div className="w-[300px] h-[450px] bg-gray-900 rounded-lg flex items-center justify-center">
+      <div className="text-white">Loading...</div>
+    </div>}>
+      <DropsCarouselContent />
+    </Suspense>
+  );
+}

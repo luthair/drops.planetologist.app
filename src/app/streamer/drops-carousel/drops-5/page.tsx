@@ -10,6 +10,10 @@ function DropsCarouselContent() {
   // Customization parameters
   const borderColor = searchParams.get('borderColor') ?? 'FAA9FF';
   const textColor = searchParams.get('textColor') ?? 'FAA9FF';
+  const rawBackgroundColor = searchParams.get('backgroundColor') ?? '29292C';
+  const backgroundColor = rawBackgroundColor === 'transparent' ? '29292C' : rawBackgroundColor;
+  const transparentBackground =
+    searchParams.get('transparentBackground') === 'true' || rawBackgroundColor === 'transparent';
   const speed = searchParams.get('speed') ?? 'normal';
   const font = searchParams.get('font') ?? 'default';
   
@@ -51,8 +55,7 @@ function DropsCarouselContent() {
     return () => clearInterval(timer);
   }, [images.length, interval]);
 
-  const hexToBorderColor = (hex: string) => `#${hex.replace('#', '')}`;
-  const hexToTextColor = (hex: string) => `#${hex.replace('#', '')}`;
+  const hexToColor = (hex: string) => `#${hex.replace('#', '')}`;
   
   const getFontFamily = (fontType: string) => {
     switch (fontType) {
@@ -68,7 +71,10 @@ function DropsCarouselContent() {
   const currentImage = images[currentImageIndex];
 
   return (
-    <div className="w-[300px] h-[450px] overflow-hidden">
+    <div
+      className="w-[300px] h-[450px] overflow-hidden"
+      style={{ backgroundColor: transparentBackground ? "transparent" : hexToColor(backgroundColor) }}
+    >
       <style jsx>{`
         @keyframes fadeInOut {
           0% { opacity: 0; transform: scale(1.05); }
@@ -78,7 +84,8 @@ function DropsCarouselContent() {
         }
         
         .image-container {
-          border: 3px solid ${hexToBorderColor(borderColor)};
+          border: 3px solid ${hexToColor(borderColor)};
+          background-color: ${transparentBackground ? "transparent" : hexToColor(backgroundColor)};
           position: relative;
           overflow: hidden;
         }
@@ -88,7 +95,7 @@ function DropsCarouselContent() {
         }
         
         .drops-subtitle {
-          color: ${hexToTextColor(textColor)};
+          color: ${hexToColor(textColor)};
           text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
           font-family: ${getFontFamily(font)};
         }

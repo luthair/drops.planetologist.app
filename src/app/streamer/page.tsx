@@ -4,10 +4,19 @@ import { useState, useEffect } from "react";
 import { Copy, Check, Gamepad2, Palette } from "lucide-react";
 
 // Inline Carousel Component
-function DropsCarouselPreview({ borderColor, textColor, speed, font }: { 
-  borderColor: string; 
-  textColor: string; 
-  speed: string; 
+function DropsCarouselPreview({
+  borderColor,
+  textColor,
+  backgroundColor,
+  transparentBackground,
+  speed,
+  font,
+}: {
+  borderColor: string;
+  textColor: string;
+  backgroundColor: string;
+  transparentBackground: boolean;
+  speed: string;
   font: string;
 }) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -50,8 +59,9 @@ function DropsCarouselPreview({ borderColor, textColor, speed, font }: {
     return () => clearInterval(timer);
   }, [images.length, interval]);
 
-  const hexToBorderColor = (hex: string) => `#${hex.replace('#', '')}`;
-  const hexToTextColor = (hex: string) => `#${hex.replace('#', '')}`;
+  const hexToColor = (hex: string) => `#${hex.replace('#', '')}`;
+  const isTransparentBackground =
+    transparentBackground || backgroundColor.toLowerCase() === "transparent";
   
   const getFontFamily = (fontType: string) => {
     switch (fontType) {
@@ -65,7 +75,14 @@ function DropsCarouselPreview({ borderColor, textColor, speed, font }: {
   };
 
   return (
-    <div className="w-[300px] h-[450px] overflow-hidden">
+    <div
+      className="w-[300px] h-[450px] overflow-hidden"
+      style={{
+        backgroundColor: isTransparentBackground
+          ? "transparent"
+          : hexToColor(backgroundColor),
+      }}
+    >
       <style jsx>{`
         @keyframes fadeInOut {
           0% { opacity: 0; transform: scale(1.05); }
@@ -75,7 +92,8 @@ function DropsCarouselPreview({ borderColor, textColor, speed, font }: {
         }
         
         .image-container {
-          border: 3px solid ${hexToBorderColor(borderColor)};
+          border: 3px solid ${hexToColor(borderColor)};
+          background-color: ${isTransparentBackground ? "transparent" : hexToColor(backgroundColor)};
           position: relative;
           overflow: hidden;
         }
@@ -85,7 +103,7 @@ function DropsCarouselPreview({ borderColor, textColor, speed, font }: {
         }
         
         .drops-subtitle {
-          color: ${hexToTextColor(textColor)};
+          color: ${hexToColor(textColor)};
           text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
           font-family: ${getFontFamily(font)};
         }
@@ -143,6 +161,19 @@ export default function StreamerPage() {
   const [textColor, setTextColor] = useState('FAA9FF');
   const [speed, setSpeed] = useState('normal');
   const [font, setFont] = useState('default');
+  const defaultBackgroundColor = typeof window !== "undefined"
+    ? new URLSearchParams(window.location.search).get("backgroundColor") ?? "29292C"
+    : "29292C";
+  const defaultTransparent = typeof window !== "undefined"
+    ? new URLSearchParams(window.location.search).get("transparentBackground") === "true"
+    : false;
+
+  const [backgroundColor, setBackgroundColor] = useState(
+    defaultBackgroundColor === "transparent" ? "29292C" : defaultBackgroundColor
+  );
+  const [transparentBackground, setTransparentBackground] = useState(
+    defaultTransparent || defaultBackgroundColor === "transparent"
+  );
 
   const copyToClipboard = async (text: string) => {
     try {
@@ -155,7 +186,7 @@ export default function StreamerPage() {
   };
 
   const baseUrl = typeof window !== 'undefined' ? window.location.origin : '';
-  const carouselUrl = `${baseUrl}/streamer/drops-carousel/drops-5?borderColor=${borderColor}&textColor=${textColor}&speed=${speed}&font=${font}`;
+  const carouselUrl = `${baseUrl}/streamer/drops-carousel/drops-5?borderColor=${borderColor}&textColor=${textColor}&backgroundColor=${transparentBackground ? 'transparent' : backgroundColor}&transparentBackground=${transparentBackground}&speed=${speed}&font=${font}`;
 
   return (
     <div className="min-h-screen bg-planet-background">
@@ -213,6 +244,8 @@ export default function StreamerPage() {
                   <DropsCarouselPreview 
                     borderColor={borderColor}
                     textColor={textColor}
+                    backgroundColor={backgroundColor}
+                    transparentBackground={transparentBackground}
                     speed={speed}
                     font={font}
                   />
@@ -255,6 +288,45 @@ export default function StreamerPage() {
                   </div>
                   <p className="text-xs text-planet-accent/60 mt-1">
                     Hex color without # (e.g., C1995B for gold)
+                  </p>
+                </div>
+
+                {/* Background Color */}
+                <div>
+                  <label className="block text-sm font-medium text-planet-accent mb-3">
+                    Background Color
+                  </label>
+                  <div className="flex items-center gap-3">
+                    <input
+                      type="color"
+                      value={`#${backgroundColor}`}
+                      onChange={(e) => setBackgroundColor(e.target.value.replace('#', ''))}
+                      className="w-12 h-10 rounded border border-planet-border bg-planet-secondary cursor-pointer"
+                      disabled={transparentBackground}
+                    />
+                    <input
+                      type="text"
+                      value={backgroundColor}
+                      onChange={(e) => setBackgroundColor(e.target.value.replace('#', ''))}
+                      placeholder="29292C"
+                      className="flex-1 bg-planet-secondary border border-planet-border rounded px-3 py-2 text-sm text-planet-accent font-mono"
+                      disabled={transparentBackground}
+                    />
+                  </div>
+                  <div className="flex items-center gap-2 mt-3">
+                    <input
+                      id="transparent-background"
+                      type="checkbox"
+                      checked={transparentBackground}
+                      onChange={(e) => setTransparentBackground(e.target.checked)}
+                      className="h-4 w-4 rounded border border-planet-border bg-planet-secondary text-planet-accent focus:ring-planet-highlight"
+                    />
+                    <label htmlFor="transparent-background" className="text-sm text-planet-accent">
+                      Use transparent background
+                    </label>
+                  </div>
+                  <p className="text-xs text-planet-accent/60 mt-1">
+                    Hex color without # (e.g., 29292C for deep charcoal). Disable to pick a solid color.
                   </p>
                 </div>
 
@@ -325,6 +397,8 @@ export default function StreamerPage() {
                       onClick={() => {
                         setBorderColor('C1995B');
                         setTextColor('C1995B');
+                        setBackgroundColor('29292C');
+                        setTransparentBackground(false);
                         setFont('default');
                       }}
                       className="bg-planet-secondary border border-planet-border rounded px-3 py-2 text-xs text-planet-accent hover:bg-planet-accent/10 transition-colors"
@@ -335,6 +409,8 @@ export default function StreamerPage() {
                       onClick={() => {
                         setBorderColor('FAA9FF');
                         setTextColor('FAA9FF');
+                        setBackgroundColor('29292C');
+                        setTransparentBackground(false);
                         setFont('default');
                       }}
                       className="bg-planet-secondary border border-planet-border rounded px-3 py-2 text-xs text-planet-accent hover:bg-planet-accent/10 transition-colors"
@@ -345,6 +421,8 @@ export default function StreamerPage() {
                       onClick={() => {
                         setBorderColor('ff6b35');
                         setTextColor('ff6b35');
+                        setBackgroundColor('1A1A1C');
+                        setTransparentBackground(false);
                         setFont('goblin');
                       }}
                       className="bg-planet-secondary border border-planet-border rounded px-3 py-2 text-xs text-planet-accent hover:bg-planet-accent/10 transition-colors"
@@ -355,6 +433,8 @@ export default function StreamerPage() {
                       onClick={() => {
                         setBorderColor('6366f1');
                         setTextColor('6366f1');
+                        setBackgroundColor('0f172a');
+                        setTransparentBackground(false);
                         setFont('monospace');
                       }}
                       className="bg-planet-secondary border border-planet-border rounded px-3 py-2 text-xs text-planet-accent hover:bg-planet-accent/10 transition-colors"

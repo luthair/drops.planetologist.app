@@ -222,10 +222,6 @@ export default function StreamerPage() {
 
         {/* Main Content */}
         <main className="container mx-auto px-4 py-8 space-y-8">
-          <div className="bg-planet-highlight/20 border border-planet-highlight/60 text-planet-highlight text-sm font-semibold rounded px-4 py-3">
-            In OBS, set the Browser Source custom CSS to <code>body {`{`} background-color: #29292C; margin: 0; overflow: hidden; {`}`}</code> so the panel matches the site background.
-          </div>
-
           <div className="grid lg:grid-cols-2 gap-8">
             {/* Left Column - Preview */}
             <div className="space-y-6">
@@ -543,14 +539,6 @@ export default function StreamerPage() {
                   
                   <div className="flex gap-3">
                     <span className="bg-planet-accent text-black rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">5</span>
-                    <div>
-                      <strong className="text-planet-accent">Match The Background</strong>
-                      <p>Open the <strong>Custom CSS</strong> tab and set <code>body {`{`} background-color: #29292C; margin: 0; overflow: hidden; {`}`}</code> so the panel blends with the website.</p>
-                    </div>
-                  </div>
-
-                  <div className="flex gap-3">
-                    <span className="bg-planet-accent text-black rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">6</span>
                     <div>
                       <strong className="text-planet-accent">Position & Go Live!</strong>
                       <p>Drag the carousel to your desired position on stream. The animation will start automatically!</p>

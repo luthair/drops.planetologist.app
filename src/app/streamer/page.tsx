@@ -97,10 +97,8 @@ function DropsCarouselPreview({
           height: 100%;
           border-radius: 0.75rem;
           overflow: hidden;
-          border: 3px solid transparent;
-          background:
-            linear-gradient(${isTransparentBackground ? "transparent" : hexToColor(backgroundColor)}, ${isTransparentBackground ? "transparent" : hexToColor(backgroundColor)}) padding-box,
-            linear-gradient(${hexToColor(borderColor)}, ${hexToColor(borderColor)}) border-box;
+          border: 3px solid ${hexToColor(borderColor)};
+          background-color: ${isTransparentBackground ? "transparent" : hexToColor(backgroundColor)};
         }
 
         .carousel-shell {

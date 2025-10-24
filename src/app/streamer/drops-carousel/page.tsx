@@ -73,10 +73,9 @@ function DropsCarouselContent() {
           position: relative;
           width: 100%;
           height: 100%;
-          border: 3px solid ${hexToBorderColor(borderColor)};
           border-radius: 0.75rem;
           overflow: hidden;
-          background: transparent;
+          border: 3px solid ${hexToBorderColor(borderColor)};
         }
 
         .carousel-shell {
@@ -85,14 +84,6 @@ function DropsCarouselContent() {
           height: 100%;
           border-radius: inherit;
           overflow: hidden;
-        }
-
-        .carousel-background {
-          position: absolute;
-          inset: 0;
-          border-radius: inherit;
-          background-color: ${hexToBorderColor(borderColor)}11;
-          z-index: 0;
         }
 
         .carousel-rotator {
@@ -128,7 +119,6 @@ function DropsCarouselContent() {
 
       <div className="carousel-frame">
         <div className="carousel-shell">
-          <div className="carousel-background" />
           <div className="carousel-rotator">
             {images.map((image, index) => (
               <img

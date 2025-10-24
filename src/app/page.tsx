@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { StreamerGrid } from "~/components/streamer-grid";
 import { DropsAccordion } from "~/components/drops-accordion";
 import { CountdownBanner } from "~/components/countdown-banner";
@@ -27,19 +28,27 @@ export default function HomePage() {
         {/* Header */}
         <header className="border-b border-planet-border bg-planet-secondary/90 backdrop-blur-sm">
           <div className="container mx-auto px-4 py-6">
-            <div className="flex items-center gap-3">
-              <div className="flex items-center gap-2">
-                <Twitch className="h-8 w-8 text-planet-accent" />
-                <h1 className="text-2xl font-bold text-planet-accent">
-                  {content.header.title}
-                </h1>
+            <div className="flex flex-wrap items-center justify-between gap-4">
+              <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2">
+                  <Twitch className="h-8 w-8 text-planet-accent" />
+                  <h1 className="text-2xl font-bold text-planet-accent">
+                    {content.header.title}
+                  </h1>
+                </div>
+                <div className="hidden sm:flex items-center gap-2 ml-4">
+                  <Gamepad2 className="h-4 w-4 text-planet-accent/70" />
+                  <span className="text-planet-accent/70 text-sm">
+                    {content.header.subtitle}
+                  </span>
+                </div>
               </div>
-              <div className="hidden sm:flex items-center gap-2 ml-4">
-                <Gamepad2 className="h-4 w-4 text-planet-accent/70" />
-                <span className="text-planet-accent/70 text-sm">
-                  {content.header.subtitle}
-                </span>
-              </div>
+              <Link
+                href="/streamer"
+                className="inline-flex items-center justify-center rounded-md border border-planet-accent px-4 py-2 text-sm font-semibold text-planet-accent transition hover:bg-planet-accent/10"
+              >
+                OBS Stream Overlay
+              </Link>
             </div>
           </div>
         </header>

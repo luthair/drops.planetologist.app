@@ -76,15 +76,7 @@ function DropsCarouselPreview({
   };
 
   return (
-    <div
-      className="w-[300px] h-[450px] overflow-hidden rounded-lg"
-      style={{
-        backgroundColor: isTransparentBackground
-          ? "transparent"
-          : hexToColor(backgroundColor),
-        borderRadius: "0.75rem",
-      }}
-    >
+    <div className="carousel-root">
       <style jsx>{`
         @keyframes fadeInOut {
           0% { opacity: 0; transform: scale(1.05); }
@@ -92,63 +84,102 @@ function DropsCarouselPreview({
           90% { opacity: 1; transform: scale(1); }
           100% { opacity: 0; transform: scale(0.95); }
         }
-        
-        .image-container {
-          border: 3px solid ${hexToColor(borderColor)};
-          background-color: ${isTransparentBackground ? "transparent" : hexToColor(backgroundColor)};
+
+        .carousel-root {
           position: relative;
+          width: 300px;
+          height: 450px;
+        }
+
+        .carousel-frame {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          border-radius: 0.75rem;
+          overflow: hidden;
+          border: 3px solid transparent;
+          background:
+            linear-gradient(${isTransparentBackground ? "transparent" : hexToColor(backgroundColor)}, ${isTransparentBackground ? "transparent" : hexToColor(backgroundColor)}) padding-box,
+            linear-gradient(${hexToColor(borderColor)}, ${hexToColor(borderColor)}) border-box;
+        }
+
+        .carousel-shell {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          border-radius: inherit;
           overflow: hidden;
         }
-        
+
+        .carousel-rotator {
+          position: absolute;
+          inset: 0;
+          z-index: 1;
+          border-radius: inherit;
+        }
+
+        .carousel-overlay {
+          position: absolute;
+          inset: 0;
+          border-radius: inherit;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          padding: 1rem;
+          background-image: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent, rgba(0, 0, 0, 0.3));
+          z-index: 2;
+        }
+
         .cycling-image {
           transition: opacity 2000ms ease-in-out;
+          border-radius: inherit;
         }
-        
+
         .drops-subtitle {
           color: ${hexToColor(textColor)};
           text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
           font-family: ${getFontFamily(font)};
         }
-        
+
         .item-name {
           font-size: 1.5rem;
           font-weight: bold;
           margin-top: 0rem;
         }
-        
+
         .watch-time {
           font-size: 1.1rem;
           font-weight: bold;
           margin-bottom: 0.5rem;
         }
       `}</style>
-      
-      <div className="image-container w-full h-full rounded-lg relative">
-        {/* Background Images */}
-        {images.map((image, index) => (
-          <img
-            key={index}
-            src={image.path}
-            alt={`Dune: Awakening ${image.name}`}
-            className={`cycling-image absolute inset-0 w-full h-full object-contain ${
-              index === currentImageIndex ? 'opacity-100' : 'opacity-0'
-            }`}
-          />
-        ))}
-        
-        {/* Overlay Content */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30 flex flex-col justify-between p-4 z-10">
-          {/* Top Section - Item Name */}
-          <div className="text-center">
-            <p className="drops-subtitle item-name">
-              {images[currentImageIndex]?.name ?? ""}
-            </p>
+
+      <div className="carousel-frame">
+        <div className="carousel-shell">
+          <div className="carousel-rotator">
+            {images.map((image, index) => (
+              <img
+                key={index}
+                src={image.path}
+                alt={`Dune: Awakening ${image.name}`}
+                className={`cycling-image absolute inset-0 w-full h-full object-contain ${
+                  index === currentImageIndex ? 'opacity-100' : 'opacity-0'
+                }`}
+              />
+            ))}
           </div>
-          
-          {/* Bottom Section - Watch Time */}
-          <div className="text-center">
-            <div className="drops-subtitle watch-time">
-              Watch for {images[currentImageIndex]?.watchTime ?? ""}
+
+          <div className="carousel-overlay">
+            <div className="text-center">
+              <p className="drops-subtitle item-name">
+                {images[currentImageIndex]?.name ?? ""}
+              </p>
+            </div>
+
+            <div className="text-center">
+              <div className="drops-subtitle watch-time">
+                Watch for {images[currentImageIndex]?.watchTime ?? ""}
+              </div>
             </div>
           </div>
         </div>

@@ -54,7 +54,7 @@ function DropsCarouselContent() {
   };
 
   return (
-    <div className="w-[300px] h-[450px] overflow-hidden">
+    <div className="carousel-root">
       <style jsx>{`
         @keyframes fadeInOut {
           0% { opacity: 0; transform: scale(1.05); }
@@ -62,50 +62,97 @@ function DropsCarouselContent() {
           90% { opacity: 1; transform: scale(1); }
           100% { opacity: 0; transform: scale(0.95); }
         }
-        
-        .image-container {
-          border: 3px solid ${hexToBorderColor(borderColor)};
+
+        .carousel-root {
           position: relative;
+          width: 300px;
+          height: 450px;
+        }
+
+        .carousel-frame {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          border: 3px solid ${hexToBorderColor(borderColor)};
+          border-radius: 0.75rem;
+          overflow: hidden;
+          background: transparent;
+        }
+
+        .carousel-shell {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          border-radius: inherit;
           overflow: hidden;
         }
-        
+
+        .carousel-background {
+          position: absolute;
+          inset: 0;
+          border-radius: inherit;
+          background-color: ${hexToBorderColor(borderColor)}11;
+          z-index: 0;
+        }
+
+        .carousel-rotator {
+          position: absolute;
+          inset: 0;
+          z-index: 1;
+          border-radius: inherit;
+        }
+
+        .carousel-overlay {
+          position: absolute;
+          inset: 0;
+          border-radius: inherit;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          padding: 1rem;
+          background-image: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent, rgba(0, 0, 0, 0.3));
+          z-index: 2;
+        }
+
         .cycling-image {
           transition: opacity 2000ms ease-in-out;
+          border-radius: inherit;
         }
-        
+
         .drops-subtitle {
           color: ${hexToTextColor(textColor)};
           text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
           font-family: ${getFontFamily(font)};
         }
       `}</style>
-      
-      <div className="image-container w-full h-full rounded-lg relative">
-        {/* Background Images */}
-        {images.map((image, index) => (
-          <img
-            key={index}
-            src={image}
-            alt={`Dune: Awakening Drop ${index + 1}`}
-            className={`cycling-image absolute inset-0 w-full h-full object-cover ${
-              index === currentImageIndex ? 'opacity-100' : 'opacity-0'
-            }`}
-          />
-        ))}
-        
-        {/* Overlay Content */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30 flex flex-col justify-between p-4 z-10">
-          {/* Top Section */}
-          <div className="text-center">
-            <p className="drops-subtitle text-lg font-bold mb-1">
-              Observer Drops 3
-            </p>
+
+      <div className="carousel-frame">
+        <div className="carousel-shell">
+          <div className="carousel-background" />
+          <div className="carousel-rotator">
+            {images.map((image, index) => (
+              <img
+                key={index}
+                src={image}
+                alt={`Dune: Awakening Drop ${index + 1}`}
+                className={`cycling-image absolute inset-0 w-full h-full object-cover ${
+                  index === currentImageIndex ? 'opacity-100' : 'opacity-0'
+                }`}
+              />
+            ))}
           </div>
-          
-          {/* Bottom Section */}
-          <div className="text-center">
-            <div className="drops-subtitle text-s font-bold mb-6">
-              Watch & Earn Rewards
+
+          <div className="carousel-overlay">
+            <div className="text-center">
+              <p className="drops-subtitle text-lg font-bold mb-1">
+                Observer Drops 3
+              </p>
+            </div>
+
+            <div className="text-center">
+              <div className="drops-subtitle text-s font-bold mb-6">
+                Watch & Earn Rewards
+              </div>
             </div>
           </div>
         </div>

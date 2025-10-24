@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState, useEffect } from "react";
 import { Copy, Check, Gamepad2, Palette } from "lucide-react";
 
@@ -76,11 +77,12 @@ function DropsCarouselPreview({
 
   return (
     <div
-      className="w-[300px] h-[450px] overflow-hidden"
+      className="w-[300px] h-[450px] overflow-hidden rounded-lg"
       style={{
         backgroundColor: isTransparentBackground
           ? "transparent"
           : hexToColor(backgroundColor),
+        borderRadius: "0.75rem",
       }}
     >
       <style jsx>{`
@@ -203,19 +205,27 @@ export default function StreamerPage() {
         {/* Header */}
         <header className="border-b border-planet-border bg-planet-secondary/90 backdrop-blur-sm">
           <div className="container mx-auto px-4 py-6">
-            <div className="flex items-center gap-3">
-              <div className="flex items-center gap-2">
-                <Gamepad2 className="h-8 w-8 text-planet-accent" />
-                <h1 className="text-2xl font-bold text-planet-accent">
-                  Drops Carousel for OBS
-                </h1>
+            <div className="flex flex-wrap items-center justify-between gap-4">
+              <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2">
+                  <Gamepad2 className="h-8 w-8 text-planet-accent" />
+                  <h1 className="text-2xl font-bold text-planet-accent">
+                    Drops Carousel for OBS
+                  </h1>
+                </div>
+                <div className="hidden sm:flex items-center gap-2 ml-4">
+                  <Palette className="h-4 w-4 text-planet-accent/70" />
+                  <span className="text-planet-accent/70 text-sm">
+                    Customize & Preview
+                  </span>
+                </div>
               </div>
-              <div className="hidden sm:flex items-center gap-2 ml-4">
-                <Palette className="h-4 w-4 text-planet-accent/70" />
-                <span className="text-planet-accent/70 text-sm">
-                  Customize & Preview
-                </span>
-              </div>
+              <Link
+                href="/"
+                className="inline-flex items-center justify-center rounded-md border border-planet-accent px-4 py-2 text-sm font-semibold text-planet-accent transition hover:bg-planet-accent/10"
+              >
+                Back to Main Page
+              </Link>
             </div>
           </div>
         </header>
